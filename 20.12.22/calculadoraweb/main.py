@@ -1,4 +1,4 @@
-from calculadora import soma, subtracao, multiplicacao, divisao
+from calculadoramaykon import soma, subtrai, multiplica, divide
 
 try:
     valor1 = float(imput('Digite um numero: '))
