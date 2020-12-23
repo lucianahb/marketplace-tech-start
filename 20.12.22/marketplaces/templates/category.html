@@ -1,0 +1,12 @@
+{% extends 'template.html' %}
+
+
+{% block body %}
+<ol>
+    {% for i in cat %}
+    {% if i.get_parentname() == mkt %}
+    <li><a href='/category'></a>{{i.get_name()}}</li>
+    {% endif %}
+    {% endfor %}
+</ol>
+{% endblock %}
