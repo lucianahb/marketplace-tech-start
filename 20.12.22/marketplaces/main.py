@@ -1,4 +1,4 @@
-from marketplaces import categorias
+from marketplaces import Marketplace, Category
 
 def menu():
     options = ['Submarino', 'Via Varejo', 'B2W', 'Zoom', 'Sair']
@@ -15,7 +15,8 @@ while True:
     try:
         op = menu()
         if op == 1:
-            resultado = categorias
+            print(op)
+            resultado = Category.categories.keys()
         elif op == 2:
             resultado = sub(valor1, valor2)
         elif op == 3:
@@ -27,6 +28,7 @@ while True:
         else:
             print('Digite uma opção válida!')
         print(f'Agora escolha uma categoria: {resultado}.')
+        
     except ValueError:
         print('Opção indisponível. Tente novamente.')
     

@@ -12,8 +12,8 @@ class Category:
         'Eletrônicos': ['TV', 'Rádio']
     }
 
-def categorias():
-    print('Categorias')
-
-    for j in categorias:
-        print(j)
+#def categorias():
+#    print('Categorias')
+#
+#    for j in categorias:
+#        print(j)
