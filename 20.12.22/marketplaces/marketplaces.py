@@ -31,3 +31,41 @@ class Subcategory:
     
     def get_parentname(self) -> str:
         return self.__parent.get_name()
+
+
+class Dados:
+    def get_mktplaces():
+        mktplaces = []
+        arq = open('dados/mkplaces.txt', 'r')
+        for i in arq:
+            i = i.strip() #tira o \n
+            i = {'mktplace':i} 
+            mktplaces.append(i)
+        arq.close()
+        return mktplaces
+
+    def get_cat():
+        cat = []
+        arq = open('dados/categorias.txt', 'r')
+        for i in arq:
+            i = i.strip() #tira o \n
+            j = i.split(';')
+            i = {'categoria':j[1], 
+                'mkplace':j[0]
+            } 
+            cat.append(i)
+        arq.close()
+        return cat
+        
+    def get_subcat():
+        subcat = []
+        arq = open('dados/subcategorias.txt', 'r')
+        for i in arq:
+            i = i.strip() #tira o \n
+            j = i.split(';')
+            i = {'subcategoria':j[1], 
+                'categoria':j[0]
+            } 
+            subcat.append(i)
+        arq.close()
+        return subcat
