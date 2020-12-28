@@ -26,10 +26,11 @@ def index():
 
 @app.route('/category/<mktplaces>')
 def category(mktplaces):
+    print(mktplaces)
     return render_template('category.html', cat = categorias, mktplaces = mktplaces)
 
 @app.route('/subcategory/<cat>')
 def subcategory(cat):
-    return render_template('subcategory.html', subcat = subcategorias, cat = categorias)
+    return render_template('subcategory.html', subcat = subcategorias, cat = cat)
 
 app.run(debug=True)
