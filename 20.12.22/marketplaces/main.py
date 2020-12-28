@@ -1,8 +1,18 @@
 from marketplaces import Marketplace, Category, Subcategory
 
-mktplaces = [Marketplace('Amazon'), Marketplace('B2W'), Marketplace('Zoom'), Marketplace('Carrefour'), Marketplace('Sair')]
-categorias = [Category('Móveis', mktplaces[1]), Category('Telefonia', mktplaces[0]), Category('Eletrodomésticos', mktplaces[1])]
-subcategorias = [Subcategory('Sofá', categorias[0]), Subcategory('Mesa', categorias[0]), Subcategory('Mesa', categorias[1])]
+mktplaces = [Marketplace('Amazon'), 
+            Marketplace('B2W'), 
+            Marketplace('Zoom'), 
+            Marketplace('Carrefour'), 
+            Marketplace('Sair')]
+
+categorias = [Category('Móveis', mktplaces[1]), 
+            Category('Telefonia', mktplaces[0]), 
+            Category('Eletrodomésticos', mktplaces[1])]
+
+subcategorias = [Subcategory('Sofá', categorias[0]), 
+                Subcategory('Mesa', categorias[0]), 
+                Subcategory('Samsung', categorias[1])]
 
 def menu(): 
 

@@ -31,27 +31,3 @@ class Subcategory:
     
     def get_parentname(self) -> str:
         return self.__parent.get_name()
-    
-
-#def categorias():
-#    print('Categorias')
-#
-#    for j in categorias:
-#        print(j)
-
-# class Category:
-#     categories = [ 'Moveis', 'Eletrônicos', 'Mobile']
-#         # {'MOVEIS': 'Móveis',
-#         # 'ELETRÔNICOS': 'Eletrônicos',
-#         # 'MOBILE': 'Mobile'
-#     # }
-
-# class Subcategory(Category):
-#     subcategories = {
-#         'MESA': 'Mesa',
-#         'ESCRIVANINHA': 'Escrivaninha',
-#         'TV': 'TV',
-#         'COMPUTADORES': 'Computadores',
-#         'CELULARES': 'Celulares',
-#         'TABLET': 'Tablet'
-#     }

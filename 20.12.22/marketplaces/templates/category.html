@@ -4,8 +4,10 @@
 {% block body %}
 <ol>
     {% for i in cat %}
-    {% if i.get_parentname() == mkt %}
-    <li><a href='/category'></a>{{i.get_name()}}</li>
+    {% if i.get_parentname() == mktplaces %}
+    <li>
+        <a href='/subcategory/{{i.get_name()}}'>{{i.get_name()}}</a>
+    </li>
     {% endif %}
     {% endfor %}
 </ol>

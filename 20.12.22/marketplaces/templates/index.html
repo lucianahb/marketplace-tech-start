@@ -3,7 +3,9 @@
 {% block body %}
 <ol>
     {% for i in mktplaces %}
-    <li><a href='/category/{{i.get_name()}}'>{{i.get_name()}}</a></li>
+    <li>
+        <a href='/category/{{i.get_name()}}'>{{i.get_name()}}</a>
+    </li>
     {% endfor %}
 </ol>
 {% endblock %}
