@@ -1,19 +1,23 @@
 import sys
 from flask import Flask, render_template, request
 
-sys.path.append('21.01.04/data')
+sys.path.append('21.01.04/backend')
+
 
 from data import save_mkp, save_prod
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
 @app.route('/createmkp')
 def createmkp():
     return render_template('createmkp.html')
+
 
 @app.route('/marketplace')
 def savemkp():
@@ -22,9 +26,11 @@ def savemkp():
     save_mkp(name, description)
     return '<h1> Marketplace saved! </h1>'
 
+
 @app.route('/createprod')
 def createprd():
     return render_template('createprod.html')
+
 
 @app.route('/product')
 def saveprod():
