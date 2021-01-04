@@ -1,0 +1,16 @@
+{% extends 'template.html' %}
+
+{% block body %}
+<form action="/product">
+    <label>Name: </label>
+    <input type="text" name="name"><br>
+
+    <label>Description: </label>
+    <input type="text" name="description"><br>
+
+    <label>Price: </label>
+    <input type="number" step="any" name="price"><br>
+
+    <input type="submit" value="save" />
+</form>
+{% endblock %}
