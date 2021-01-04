@@ -61,9 +61,9 @@ while True:
             while True:
                 try:
                     if escolher_cat == 1:
+                        print(f'\nMenu de categorias:')
                         for i in subcategorias:
                             if i.get_parentname() == categorias[1].get_name():
-                                print(f'\n Menu de categorias:')
                                 print(f'\n{i.get_subcat()}')
                         break
                 except Exception as e: 

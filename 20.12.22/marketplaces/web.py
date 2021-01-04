@@ -5,20 +5,6 @@ from marketplaces import Marketplace, Category, Subcategory, Dados
 
 app = Flask(__name__)
 
-# mktplaces = [Marketplace('Amazon'), 
-#             Marketplace('B2W'), 
-#             Marketplace('Zoom'), 
-#             Marketplace('Carrefour'), 
-#             Marketplace('Sair')]
-
-# categorias = [Category('Móveis', mktplaces[1]), 
-#             Category('Telefonia', mktplaces[0]), 
-#             Category('Eletrodomésticos', mktplaces[1])]
-
-# subcategorias = [Subcategory('Sofá', categorias[0]), 
-#                 Subcategory('Mesa', categorias[0]), 
-#                 Subcategory('Samsung', categorias[1])]
-
 mktplaces = []
 result_mktplaces = Dados.get_mktplaces()
 for i in result_mktplaces:
@@ -53,3 +39,17 @@ def subcategory(cat):
     return render_template('subcategory.html', subcat = subcategorias, cat = cat)
 
 app.run(debug=True)
+
+# mktplaces = [Marketplace('Amazon'), 
+#             Marketplace('B2W'), 
+#             Marketplace('Zoom'), 
+#             Marketplace('Carrefour'), 
+#             Marketplace('Sair')]
+
+# categorias = [Category('Móveis', mktplaces[1]), 
+#             Category('Telefonia', mktplaces[0]), 
+#             Category('Eletrodomésticos', mktplaces[1])]
+
+# subcategorias = [Subcategory('Sofá', categorias[0]), 
+#                 Subcategory('Mesa', categorias[0]), 
+#                 Subcategory('Samsung', categorias[1])]
