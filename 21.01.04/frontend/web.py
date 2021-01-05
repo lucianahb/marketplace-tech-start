@@ -1,10 +1,10 @@
 import sys
 from flask import Flask, render_template, request
 
-sys.path.append('21.01.04/backend')
+sys.path.append('.')
 
 
-from data import save_mkp, save_prod
+from backend.data import save_mkp, save_prod
 
 app = Flask(__name__)
 
@@ -41,4 +41,4 @@ def saveprod():
     return '<h1> Product saved! </h1>'
 
 
-app.run(debug=True)
+app.run()
