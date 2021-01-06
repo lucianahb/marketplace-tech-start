@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 sys.path.append('.')
 
 
-from backend.data import save_mkp, save_prod, read_historic, save_category
+from backend.data import save_mkp, save_prod, read_historic, save_categories
 
 
 app = Flask(__name__)
@@ -55,7 +55,8 @@ def list_products():
 
 @app.route('/listcategory')
 def list_categories():
-    pass
+    categories = read_historic('backend/categories.txt')
+    return render_template('listcategory.html', categories=categories)
 
 @app.route('/createcategory')
 def create_category():
@@ -66,7 +67,7 @@ def create_category():
 def save_category():
     name = request.args.get('name')
     description = request.args.get('description')
-    save_category(name, description)
+    save_categories(name, description)
     return render_template('succes.html')
 
 app.run(debug=True)

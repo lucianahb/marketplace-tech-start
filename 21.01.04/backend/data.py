@@ -56,13 +56,12 @@ def read_historic(path_file: str) -> list:
     write_log(f'Read historic in {path_file:}')
     return file_lines
 
-def save_category(category: str, description: str) -> None:
-    """Save a product in the products.txt file and record this action in the log.
+def save_categories(category: str, description: str) -> None:
+    """Save a category in the categories.txt file and record this action in the log.
 
     Args:
-        product (str): Product name
-        description (str): Product description
-        price (str): Product price
+        category (str): Category name
+        description (str): Category description
     """
     file_ = open('backend/categories.txt', 'a')
     string_prod = f'{{"name": "{category}", "description": "{description}"}}\n'
