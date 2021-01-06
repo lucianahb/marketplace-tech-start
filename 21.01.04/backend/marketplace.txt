@@ -5,3 +5,5 @@ Extra;Departamento em geral4
 Shoptime;Departamento em geral5
 Shoppee;Departamento em geral6
 Shoppee;Departamento em geral6
+FAst shop;Eletronicos
+Cissa Magazine;Eletrônicos 2
