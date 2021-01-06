@@ -1,4 +1,7 @@
-teste market places;vvvvvvvvvvvvvvvvvvvvv
-produto tste2;tete 2 teste 2
-produto tste2;gggggggggggggggggg
-teste maket place 5 ;abvc gggg
+Casas Bahia;Departamento em geral
+Americanas;Departamento em geral2
+Mercado Livre;Departamento em geral3
+Extra;Departamento em geral4
+Shoptime;Departamento em geral5
+Shoppee;Departamento em geral6
+Shoppee;Departamento em geral6

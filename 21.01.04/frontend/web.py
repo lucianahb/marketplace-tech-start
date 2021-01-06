@@ -24,7 +24,7 @@ def savemkp():
     name = request.args.get('name')
     description = request.args.get('description')
     save_mkp(name, description)
-    return '<h1> Marketplace saved! </h1>'
+    return "<h1> Marketplace saved! </h1> </br> <a href='/'>Voltar</a>"
 
 
 @app.route('/createprod')
@@ -50,7 +50,7 @@ def table_mkp():
     for i in l_aux:
         
         i_aux=i.split(';')
-        l_table.append({'nome': i_aux[0],'desc': i_aux[1],'rota': '/'})
+        l_table.append({'nome': i_aux[0],'desc': i_aux[1]})
 
     return render_template('table_marketplace.html',lista =l_table)
 
