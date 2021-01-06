@@ -1,10 +1,10 @@
 import sys
 from flask import Flask, render_template, request
 
-sys.path.append('21.01.04/backend')
+sys.path.append('21.01.04/')
 
 
-from data import save_mkp, save_prod
+from backend.data import save_mkp, save_prod, read_historic
 
 app = Flask(__name__)
 
@@ -24,7 +24,7 @@ def savemkp():
     name = request.args.get('name')
     description = request.args.get('description')
     save_mkp(name, description)
-    return '<h1> Marketplace saved! </h1>'
+    return render_template('succes.html')
 
 
 @app.route('/createprod')
@@ -38,7 +38,11 @@ def saveprod():
     description = request.args.get('description')
     price = request.args.get('price')
     save_prod(name, description, price)
-    return '<h1> Product saved! </h1>'
+    return render_template('succes.html')
 
+@app.route('/listprod')
+def list_products():
+    products = read_historic('21.01.04/backend/product.txt')
+    return render_template('listprod.html', products=products)
 
 app.run(debug=True)
