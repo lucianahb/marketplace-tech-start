@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 sys.path.append('.')
 
 
-from backend.data import save_mkp, save_prod
+from backend.data import *
 
 app = Flask(__name__)
 
@@ -39,6 +39,21 @@ def saveprod():
     price = request.args.get('price')
     save_prod(name, description, price)
     return '<h1> Product saved! </h1>'
+
+@app.route('/list_marketplace')
+def table_mkp():    
+    l_aux = lista_txt('backend/marketplace.txt')
+    l_table = []
+
+
+    print(l_aux)
+    for i in l_aux:
+        
+        i_aux=i.split(';')
+        l_table.append({'nome': i_aux[0],'desc': i_aux[1],'rota': '/'})
+
+    return render_template('table_marketplace.html',lista =l_table)
+
 
 
 app.run()

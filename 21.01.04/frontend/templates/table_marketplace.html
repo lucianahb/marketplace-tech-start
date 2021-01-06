@@ -1,0 +1,28 @@
+{% extends 'template.html' %}
+
+{% block body %}
+
+<table>    
+  <tr>
+    <th>Nome</th>
+    <th>Descricao</th> 
+  </tr>
+{% for i in lista %}
+  <tr>
+    <td>{{i['nome']}} </td>
+    <td>{{i['desc']}} </td>
+   </tr>
+  {%  endfor %}
+</table>
+
+
+
+
+
+
+    
+
+
+
+
+{% endblock %}
