@@ -45,13 +45,9 @@ def table_mkp():
     l_aux = lista_txt('backend/marketplace.txt')
     l_table = []
 
-
-    print(l_aux)
-    for i in l_aux:
-        
-        i_aux=i.split(';')
-        l_table.append({'nome': i_aux[0],'desc': i_aux[1]})
-
+    for i in l_aux:        
+      i_aux=i.split(';')
+      l_table.append({'nome': i_aux[0],'desc': i_aux[1]})
     return render_template('table_marketplace.html',lista =l_table)
 
 
