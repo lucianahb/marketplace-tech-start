@@ -3,16 +3,15 @@ from datetime import datetime
 
 
 def write_mkp(marketplace, description):
-    arq = open('21.01.04/backend/marketplace.txt', 'a')
+    arq = open('backend/marketplace.txt', 'a')
     string_mtp = f'{marketplace};{description}\n'
     arq.write(string_mtp)
     arq.close()
-
-
+    
 
 def write_log(log):
     hour_format = datetime.now().strftime('%H:%M:%S - %d/%m/%Y')
-    arq = open('21.01.04/backend/log.txt', 'a')
+    arq = open('backend/log.txt', 'a')
     string_log = f'{hour_format} - {log}\n'
     arq.write(string_log)
     arq.close()
@@ -40,7 +39,7 @@ def save_prod(product: str, description: str, price: str) -> None:
     write_log(
         f'Saved Product {product} with description {description} and price {price}'
     )
-    
+
     
 def read_historic(path_file: str) -> list:
     """Reads the data file and returns it as a list
@@ -60,3 +59,4 @@ def read_historic(path_file: str) -> list:
     file_.close()
     write_log(f'Read historic in {path_file:}')
     return file_lines
+

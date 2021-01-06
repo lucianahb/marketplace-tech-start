@@ -6,8 +6,9 @@ sys.path.append('21.01.04/')
 
 from backend.data import save_mkp, save_prod, read_historic
 
-app = Flask(__name__)
 
+app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/')
 def index():
@@ -40,9 +41,16 @@ def saveprod():
     save_prod(name, description, price)
     return render_template('succes.html')
 
+@app.route('/list_marketplace')
+def table_mkp():    
+    l_aux = read_historic('21.01.04/backend/marketplace.txt'')
+    return render_template('table_marketplace.html',lista =l_aux)
+
+
 @app.route('/listprod')
 def list_products():
     products = read_historic('21.01.04/backend/product.txt')
     return render_template('listprod.html', products=products)
 
-app.run(debug=True)
+
+app.run()
