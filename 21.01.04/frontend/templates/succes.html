@@ -1,17 +1,15 @@
 {% extends 'template.html' %}
 
 {% block body %}
-    <h3>Registered!</h3>
-    <ol>
-        <li>
-            <a href='/createmkp'>Create Marketplace</a>
-        </li>
-        <li>
-            <a href='/createprod'>Create Product</a>
-        </li>
-        <li>
-            <a href='/listprod'>List Products</a>
-        </li>
-    </ol>
-    
+
+       <h1> Registered! </h1>
+       <div class="div_container">
+           <button class="btn_primary" onclick="location.href='/createmkp'">Create Marketplace</button>
+           </br></br>
+           <button class="btn_primary" onclick="location.href='/createprod'">Create Product</button>
+           </br></br>
+           <button class="btn_primary" onclick="location.href='/list_marketplace'">List Marketplace</button>
+           </br></br>
+           <button class="btn_primary" onclick="location.href='/listprod'">List Product</button>
+       </div>
 {% endblock %}
