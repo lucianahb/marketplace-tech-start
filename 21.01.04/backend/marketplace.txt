@@ -1,0 +1,9 @@
+Casas Bahia;Departamento em geral
+Americanas;Departamento em geral2
+Mercado Livre;Departamento em geral3
+Extra;Departamento em geral4
+Shoptime;Departamento em geral5
+Shoppee;Departamento em geral6
+Shoppee;Departamento em geral6
+FAst shop;Eletronicos
+Cissa Magazine;Eletrônicos 2

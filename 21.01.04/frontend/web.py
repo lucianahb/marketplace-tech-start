@@ -1,13 +1,13 @@
 import sys
 from flask import Flask, render_template, request
 
-sys.path.append('21.01.04/backend')
+sys.path.append('.')
 
 
-from data import save_mkp, save_prod
+from backend.data import *
 
 app = Flask(__name__)
-
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/')
 def index():
@@ -24,7 +24,7 @@ def savemkp():
     name = request.args.get('name')
     description = request.args.get('description')
     save_mkp(name, description)
-    return '<h1> Marketplace saved! </h1>'
+    return "<h1> Marketplace saved! </h1> </br> <a href='/'>Voltar</a>"
 
 
 @app.route('/createprod')
@@ -40,5 +40,16 @@ def saveprod():
     save_prod(name, description, price)
     return '<h1> Product saved! </h1>'
 
+@app.route('/list_marketplace')
+def table_mkp():    
+    l_aux = lista_txt('backend/marketplace.txt')
+    l_table = []
 
-app.run(debug=True)
+    for i in l_aux:        
+      i_aux=i.split(';')
+      l_table.append({'nome': i_aux[0],'desc': i_aux[1]})
+    return render_template('table_marketplace.html',lista =l_table)
+
+
+
+app.run()
