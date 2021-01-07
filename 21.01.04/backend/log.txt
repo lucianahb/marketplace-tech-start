@@ -1,24 +1,7 @@
-13:20:07 - 05/01/2021 - Saved Marketplace teste market places with description vvvvvvvvvvvvvvvvvvvvv
-13:26:41 - 05/01/2021 - Saved Product produto tste with description gggggggggggggggggg and price 45
-15:37:31 - 05/01/2021 - Saved Marketplace produto tste2 with description gggggggggggggggggg
-20:45:16 - 05/01/2021 - Saved Marketplace teste maket place 5  with description abvc gggg
-22:38:10 - 05/01/2021 - Saved Marketplace Casas Bahia with description Departamento em geral
-22:38:45 - 05/01/2021 - Saved Marketplace Americanas with description Departamento em geral2
-22:39:21 - 05/01/2021 - Saved Marketplace Mercado Livre with description Departamento em geral3
-22:39:42 - 05/01/2021 - Saved Marketplace Extra with description Departamento em geral4
-22:42:41 - 05/01/2021 - Saved Marketplace Shoptime with description Departamento em geral5
-22:44:05 - 05/01/2021 - Saved Marketplace Shoppee with description Departamento em geral6
-22:45:14 - 05/01/2021 - Saved Marketplace Shoppee with description Departamento em geral6
-22:54:09 - 05/01/2021 - Saved Marketplace FAst shop with description Eletronicos
-22:54:34 - 05/01/2021 - Saved Marketplace Cissa Magazine with description Eletrônicos 2
-22:55:12 - 05/01/2021 -  marketplace.txt listed in the browser. 
-22:55:25 - 05/01/2021 -  marketplace.txt listed in the browser. 
-10:55:48 - 06/01/2021 -  marketplace.txt listed in the browser. 
-12:55:22 - 06/01/2021 -  marketplace.txt listed in the browser. 
-12:59:56 - 06/01/2021 -  marketplace.txt listed in the browser. 
-13:11:23 - 06/01/2021 -  marketplace.txt listed in the browser. 
-13:11:29 - 06/01/2021 -  marketplace.txt listed in the browser. 
-13:12:12 - 06/01/2021 -  marketplace.txt listed in the browser. 
-13:12:23 - 06/01/2021 -  marketplace.txt listed in the browser. 
-13:13:25 - 06/01/2021 -  marketplace.txt listed in the browser. 
-13:13:39 - 06/01/2021 -  marketplace.txt listed in the browser. 
+
+10:06:53 - 07/01/2021 - Saved Marketplace Magalu with description Magazine luiza
+10:07:01 - 07/01/2021 - Saved Product Mouse with description Lenovo and price 100
+10:07:10 - 07/01/2021 - Saved category Eletronicos with description aparelhos eletrÃ´nicos
+10:07:11 - 07/01/2021 - Read historic in backend/marketplace.txt
+10:07:14 - 07/01/2021 - Read historic in backend/product.txt
+10:07:17 - 07/01/2021 - Read historic in backend/categories.txt

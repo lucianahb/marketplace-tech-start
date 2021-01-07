@@ -4,7 +4,8 @@ from flask import Flask, render_template, request
 sys.path.append('.')
 
 
-from backend.data import *
+from backend.data import save_mkp, save_prod, read_historic, save_categories
+
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -24,7 +25,7 @@ def savemkp():
     name = request.args.get('name')
     description = request.args.get('description')
     save_mkp(name, description)
-    return "<h1> Marketplace saved! </h1> </br> <a href='/'>Voltar</a>"
+    return render_template('succes.html')
 
 
 @app.route('/createprod')
@@ -38,18 +39,35 @@ def saveprod():
     description = request.args.get('description')
     price = request.args.get('price')
     save_prod(name, description, price)
-    return '<h1> Product saved! </h1>'
+    return render_template('succes.html')
 
 @app.route('/list_marketplace')
 def table_mkp():    
-    l_aux = lista_txt('backend/marketplace.txt')
-    l_table = []
-
-    for i in l_aux:        
-      i_aux=i.split(';')
-      l_table.append({'nome': i_aux[0],'desc': i_aux[1]})
-    return render_template('table_marketplace.html',lista =l_table)
+    l_aux = read_historic('backend/marketplace.txt')
+    return render_template('table_marketplace.html',lista =l_aux)
 
 
+@app.route('/listprod')
+def list_products():
+    products = read_historic('backend/product.txt')
+    return render_template('listprod.html', products=products)
 
-app.run()
+
+@app.route('/listcategory')
+def list_categories():
+    categories = read_historic('backend/categories.txt')
+    return render_template('listcategory.html', categories=categories)
+
+@app.route('/createcategory')
+def create_category():
+    return render_template('createcategory.html')
+
+
+@app.route('/category')
+def save_category():
+    name = request.args.get('name')
+    description = request.args.get('description')
+    save_categories(name, description)
+    return render_template('succes.html')
+
+app.run(debug=True)
