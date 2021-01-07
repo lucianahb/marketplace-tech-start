@@ -1,10 +1,10 @@
 import sys
 from flask import Flask, render_template, request
 
-sys.path.append('21.01.04/')
+sys.path.append('.')
 
 
-from backend.data import save_mkp, save_prod, read_historic
+from backend.data import save_mkp, save_prod, read_historic, save_categories
 
 
 app = Flask(__name__)
@@ -43,14 +43,31 @@ def saveprod():
 
 @app.route('/list_marketplace')
 def table_mkp():    
-    l_aux = read_historic('21.01.04/backend/marketplace.txt'')
+    l_aux = read_historic('backend/marketplace.txt')
     return render_template('table_marketplace.html',lista =l_aux)
 
 
 @app.route('/listprod')
 def list_products():
-    products = read_historic('21.01.04/backend/product.txt')
+    products = read_historic('backend/product.txt')
     return render_template('listprod.html', products=products)
 
 
-app.run()
+@app.route('/listcategory')
+def list_categories():
+    categories = read_historic('backend/categories.txt')
+    return render_template('listcategory.html', categories=categories)
+
+@app.route('/createcategory')
+def create_category():
+    return render_template('createcategory.html')
+
+
+@app.route('/category')
+def save_category():
+    name = request.args.get('name')
+    description = request.args.get('description')
+    save_categories(name, description)
+    return render_template('succes.html')
+
+app.run(debug=True)

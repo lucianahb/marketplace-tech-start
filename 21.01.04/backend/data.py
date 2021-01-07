@@ -2,13 +2,6 @@ import json
 from datetime import datetime
 
 
-def write_mkp(marketplace, description):
-    arq = open('backend/marketplace.txt', 'a')
-    string_mtp = f'{marketplace};{description}\n'
-    arq.write(string_mtp)
-    arq.close()
-    
-
 def write_log(log):
     hour_format = datetime.now().strftime('%H:%M:%S - %d/%m/%Y')
     arq = open('backend/log.txt', 'a')
@@ -18,7 +11,10 @@ def write_log(log):
 
 
 def save_mkp(marketplace, description):
-    write_mkp(marketplace, description)
+    arq = open('backend/marketplace.txt', 'a')
+    string_mtp = f'{{"name": "{marketplace}", "description": "{description}"}}\n'
+    arq.write(string_mtp)
+    arq.close()    
     write_log(
         f'Saved Marketplace {marketplace} with description {description}'
     )
@@ -32,7 +28,7 @@ def save_prod(product: str, description: str, price: str) -> None:
         description (str): Product description
         price (str): Product price
     """
-    file_ = open('21.01.04/backend/product.txt', 'a')
+    file_ = open('backend/product.txt', 'a')
     string_prod = f'{{"name": "{product}", "description": "{description}", "price": "{price}"}}\n'
     file_.write(string_prod)
     file_.close()
@@ -60,3 +56,17 @@ def read_historic(path_file: str) -> list:
     write_log(f'Read historic in {path_file:}')
     return file_lines
 
+def save_categories(category: str, description: str) -> None:
+    """Save a category in the categories.txt file and record this action in the log.
+
+    Args:
+        category (str): Category name
+        description (str): Category description
+    """
+    file_ = open('backend/categories.txt', 'a')
+    string_prod = f'{{"name": "{category}", "description": "{description}"}}\n'
+    file_.write(string_prod)
+    file_.close()
+    write_log(
+        f'Saved category {category} with description {description}'
+    )
