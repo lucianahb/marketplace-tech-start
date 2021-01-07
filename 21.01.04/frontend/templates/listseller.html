@@ -1,0 +1,17 @@
+{% extends 'template.html' %}
+{% block body %}
+<ul>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        {% for sell in seller_aux %}
+        <tr>
+            <td>{{ sell['name'] }}</td>
+            <td>{{ sell['email'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</ul>
+{% endblock %}
