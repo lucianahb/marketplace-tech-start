@@ -1,7 +1,7 @@
-
 10:06:53 - 07/01/2021 - Saved Marketplace Magalu with description Magazine luiza
 10:07:01 - 07/01/2021 - Saved Product Mouse with description Lenovo and price 100
 10:07:10 - 07/01/2021 - Saved category Eletronicos with description aparelhos eletrônicos
 10:07:11 - 07/01/2021 - Read historic in backend/marketplace.txt
 10:07:14 - 07/01/2021 - Read historic in backend/product.txt
 10:07:17 - 07/01/2021 - Read historic in backend/categories.txt
+11:53:55 - 07/01/2021 - Read historic in backend/categories.txt

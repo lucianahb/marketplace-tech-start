@@ -4,14 +4,23 @@
 
 <table>    
   <tr>
-    <th>Log</th>
+    <th style="background-color:#c9bd78">Log</th>
   </tr>
-{% for log_row in list_log %}
-    <tr>
-        <td>{{ log_row }} </td>
-    </tr>
-  {%  endfor %}
+    {% for log_row in list_log %}
+        {% if 'Read historic in backend/' in log_row%}
+            <tr>
+                <td style="background-color:#72b868">{{ log_row }}</td>
+            </tr>
+        {% else %}
+        <tr>
+            <td style="background-color:#9da799">{{ log_row }}</td>
+        </tr>          
+        {% endif %}
+    {%  endfor %}
 </table>
 
 
 {% endblock %}
+
+
+
