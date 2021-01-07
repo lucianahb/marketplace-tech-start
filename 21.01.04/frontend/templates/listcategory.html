@@ -1,0 +1,18 @@
+{% extends 'template.html' %}
+
+{% block body %}
+    <ul>
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Description</th>
+            </tr>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category['name'] }}</td>
+                    <td>{{ category['description'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </ul>
+{% endblock %}

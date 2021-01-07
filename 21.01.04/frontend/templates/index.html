@@ -1,13 +1,19 @@
 {% extends 'template.html' %}
 
 {% block body %}
-<ol>
-    <li>
-        <a href='/createmkp'>Create Marketplace</a>
-    </li>
-    <li>
-        <a href='/createprod'>Create Product</a>
-    </li>
-</ol>
+
+<div class="div_container">
+    <button class="btn_primary" onclick="location.href='/createmkp'">Create Marketplace</button>
+    </br></br>
+    <button class="btn_primary" onclick="location.href='/createprod'">Create Product</button>
+    </br></br>
+    <button class="btn_primary" onclick="location.href='/createcategory'">Create Category</button>
+    </br></br>
+    <button class="btn_primary" onclick="location.href='/list_marketplace'">List Marketplace</button>
+    </br></br>
+    <button class="btn_primary" onclick="location.href='/listprod'">List Product</button>
+    </br></br>
+    <button class="btn_primary" onclick="location.href='/listcategory'">List Category</button>
+</div>
 
 {% endblock %}
