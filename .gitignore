@@ -4,3 +4,7 @@
 
 /21.01.04/.vs/VSWorkspaceState.json
 /21.01.04/.vs/slnx.sqlite
+
+*.suo
+*.sqlite
+
