@@ -1,0 +1,17 @@
+{% extends 'template.html' %}
+
+{% block body %}
+
+<table>    
+  <tr>
+    <th>Log</th>
+  </tr>
+{% for log_row in list_log %}
+    <tr>
+        <td>{{ log_row }} </td>
+    </tr>
+  {%  endfor %}
+</table>
+
+
+{% endblock %}
