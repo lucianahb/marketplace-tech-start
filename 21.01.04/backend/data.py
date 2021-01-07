@@ -86,3 +86,18 @@ def save_seller(name_seller: str, email: str) -> None:
     write_log(
         f'Saved Seller {name_seller} with email {email}'
     )
+    
+
+def read_log() -> list:
+    """Read log file
+
+    Returns:
+        list: list of log rows
+    """
+    log_list = []
+    log_file = open('backend/log.txt', 'r')
+    for row in log_file:
+        clean_row = row.strip()
+        log_list.append(clean_row)
+    return log_list
+
