@@ -70,6 +70,22 @@ def save_categories(category: str, description: str) -> None:
     write_log(
         f'Saved category {category} with description {description}'
     )
+
+
+def save_seller(name_seller: str, email: str) -> None:
+    """Save a category in the categories.txt file and record this action in the log.
+
+    Args:
+        category (str): Category name
+        description (str): Category description
+    """
+    file_ = open('backend/seller.txt', 'a')
+    string_prod = f'{{"name": "{name_seller}", "email": "{email}"}}\n'
+    file_.write(string_prod)
+    file_.close()
+    write_log(
+        f'Saved Seller {name_seller} with email {email}'
+    )
     
 
 def read_log() -> list:
@@ -84,4 +100,4 @@ def read_log() -> list:
         clean_row = row.strip()
         log_list.append(clean_row)
     return log_list
-    
+

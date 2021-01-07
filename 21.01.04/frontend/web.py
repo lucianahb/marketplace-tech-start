@@ -7,6 +7,7 @@ sys.path.append('.')
 from backend.data import *
 
 
+
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
@@ -69,11 +70,31 @@ def save_category():
     description = request.args.get('description')
     save_categories(name, description)
     return render_template('succes.html')
+  
 
+@app.route('/listseller')
+def list_seller():
+    sellers = read_historic('backend/seller.txt')
+    return render_template('listseller.html', seller_aux=sellers)
+
+
+@app.route('/createseller')
+def create_seller():
+    return render_template('createseller.html')
+  
+
+@app.route('/seller')
+def grava_seller():
+    name = request.args.get('name')
+    email = request.args.get('email')
+    save_seller(name,email)
+    return render_template('succes.html')
+  
 
 @app.route('/listlog')
 def list_log():
     list_log = read_log()
     return render_template('listlog.html', list_log=list_log)
+  
 
 app.run(debug=True)
