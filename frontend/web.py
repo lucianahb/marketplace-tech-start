@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 sys.path.append('.')
 
 
-from backend.controller.categories_controller import * 
+from backend.controller.category_controller import * 
 from backend.controller.log_controller import *
 from backend.controller.marketplace_controller import *
 from backend.controller.product_controller import *

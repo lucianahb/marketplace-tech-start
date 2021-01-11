@@ -7,4 +7,5 @@
 
 *.suo
 *.sqlite
-
+*.txt
+*.pyc

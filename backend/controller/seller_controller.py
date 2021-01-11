@@ -1,4 +1,4 @@
-from backend.dao_txt.seller_dao_txt import save_seller, read_sellers
+from backend.dao.seller_dao import save_seller, read_sellers
 
 def create_seller(name_seller: str, phone: str, email: str) -> None:
     save_seller(name_seller, phone, email)

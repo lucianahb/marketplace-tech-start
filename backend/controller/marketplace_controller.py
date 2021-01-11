@@ -1,4 +1,4 @@
-from backend.dao_txt.marketplace_dao_txt import save_mkp, read_marketplace
+from backend.dao.marketplace_dao import save_mkp, read_marketplace
 
 def create_marketplace(marketplace: str, description: str) -> None:
     save_mkp(marketplace, description)
