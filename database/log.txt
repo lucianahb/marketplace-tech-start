@@ -1,0 +1,34 @@
+10:06:53 - 07/01/2021 - Saved Marketplace Magalu with description Magazine luiza
+10:07:01 - 07/01/2021 - Saved Product Mouse with description Lenovo and price 100
+10:07:10 - 07/01/2021 - Saved category Eletronicos with description aparelhos eletrônicos
+10:07:11 - 07/01/2021 - Read historic in backend/marketplace.txt
+10:07:14 - 07/01/2021 - Read historic in backend/product.txt
+10:07:17 - 07/01/2021 - Read historic in backend/categories.txt
+11:03:29 - 07/01/2021 - Read historic in backend/marketplace.txt
+11:03:33 - 07/01/2021 - Read historic in backend/product.txt
+11:06:19 - 07/01/2021 - Saved category categoria tes 07/01 with description vvv bbbb  ssss
+11:06:20 - 07/01/2021 - Read historic in backend/categories.txt
+11:32:49 - 07/01/2021 - Saved Seller gustavo with email gustavo.sobreiro@olist.com
+11:40:53 - 07/01/2021 - Read historic in backend/seller.txt
+11:41:53 - 07/01/2021 - Read historic in backend/seller.txt
+
+12:18:21 - 11/01/2021 - Saved Marketplace Carrefour with description Maior marketplace 
+12:18:27 - 11/01/2021 - Read marketplace in database/marketplace.txt
+12:18:40 - 11/01/2021 - Saved Product Roupa with description blusa muito bonita and price 20.00
+12:18:43 - 11/01/2021 - Read products in database/product.txt
+12:18:56 - 11/01/2021 - Saved category Blusa with description Blusa decotada 
+12:18:59 - 11/01/2021 - Read categories in database/categories.txt
+12:19:16 - 11/01/2021 - Saved category Brinquedo with description Playstation 5
+12:19:20 - 11/01/2021 - Read categories in database/categories.txt
+12:19:30 - 11/01/2021 - Read products in database/product.txt
+12:21:32 - 11/01/2021 - Saved category Brinquedo with description Playstation 5
+12:28:57 - 11/01/2021 - Read categories in database/categories.txt
+12:29:38 - 11/01/2021 - Saved category Brinquedo with description Boneca
+12:30:29 - 11/01/2021 - Saved category Sapato with description muiito confortável
+12:30:33 - 11/01/2021 - Read categories in database/categories.txt
+13:26:01 - 11/01/2021 - Read sellers in database/seller.txt
+13:29:56 - 11/01/2021 - Saved Seller Bruno with phone 99999999 and email bruno@carrefour.com
+13:44:19 - 11/01/2021 - Read sellers in database/seller.txt
+13:44:50 - 11/01/2021 - Saved Seller Hugo with phone 9999999 and email hugo@viavarejo.com
+13:44:54 - 11/01/2021 - Read sellers in database/seller.txt
+13:46:06 - 11/01/2021 - Read sellers in database/seller.txt

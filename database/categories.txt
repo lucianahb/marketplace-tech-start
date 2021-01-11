@@ -1,0 +1,5 @@
+{"name": "categoria tes 07/01", "description": "vvv bbbb  ssss"}
+{"name": "Eletronicos", "description": "aparelhos eletrônicos"}
+{"name": "Brinquedo", "description": "Playstation 5"}
+{"name": "Brinquedo", "description": "Boneca"}
+{"name": "Sapato", "description": "muiito confortável"}
