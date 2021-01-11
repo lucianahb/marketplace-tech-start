@@ -1,4 +1,0 @@
-
-import Product
-
-p = Product()

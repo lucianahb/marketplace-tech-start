@@ -1,6 +1,0 @@
-Móveis;Sofá
-Móveis;Mesa
-Eletrodomésticos;Geladeira
-Eletrodomésticos;Fogão
-Livraria;LivroA
-Telefonia;Samsung
