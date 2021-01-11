@@ -1,1 +1,0 @@
-{"name": "Mouse", "description": "Lenovo", "price": "100"}

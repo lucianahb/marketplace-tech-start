@@ -4,11 +4,13 @@
     <table>
         <tr>
             <th>Name</th>
+            <th>Phone</th>
             <th>Email</th>
         </tr>
         {% for sell in seller_aux %}
         <tr>
             <td>{{ sell['name'] }}</td>
+            <td>{{ sell['phone'] }}</td>
             <td>{{ sell['email'] }}</td>
         </tr>
         {% endfor %}

@@ -1,0 +1,4 @@
+{"name": "Magalu", "description": "Magazine luiza"}
+{"name": "Amazon", "description": "Maior marketplace "}
+{"name": "Amazon", "description": "Maior marketplace "}
+{"name": "Carrefour", "description": "Maior marketplace "}

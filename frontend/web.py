@@ -4,8 +4,11 @@ from flask import Flask, render_template, request
 sys.path.append('.')
 
 
-from backend.data import *
-
+from backend.controller.categories_controller import * 
+from backend.controller.log_controller import *
+from backend.controller.marketplace_controller import *
+from backend.controller.product_controller import *
+from backend.controller.seller_controller import *
 
 
 app = Flask(__name__)
@@ -25,7 +28,7 @@ def createmkp():
 def savemkp():
     name = request.args.get('name')
     description = request.args.get('description')
-    save_mkp(name, description)
+    create_marketplace(name, description)
     return render_template('succes.html')
 
 
@@ -39,24 +42,24 @@ def saveprod():
     name = request.args.get('name')
     description = request.args.get('description')
     price = request.args.get('price')
-    save_prod(name, description, price)
+    create_product(name, description, price)
     return render_template('succes.html')
 
 @app.route('/list_marketplace')
 def table_mkp():    
-    l_aux = read_historic('backend/marketplace.txt')
+    l_aux = listall_marketplace()
     return render_template('table_marketplace.html',lista =l_aux)
 
 
 @app.route('/listprod')
 def list_products():
-    products = read_historic('backend/product.txt')
+    products = listall_product()
     return render_template('listprod.html', products=products)
 
 
 @app.route('/listcategory')
 def list_categories():
-    categories = read_historic('backend/categories.txt')
+    categories = listall_categories()
     return render_template('listcategory.html', categories=categories)
 
 @app.route('/createcategory')
@@ -68,18 +71,18 @@ def create_category():
 def save_category():
     name = request.args.get('name')
     description = request.args.get('description')
-    save_categories(name, description)
+    create_categories(name, description)
     return render_template('succes.html')
   
 
 @app.route('/listseller')
 def list_seller():
-    sellers = read_historic('backend/seller.txt')
+    sellers = listall_seller()
     return render_template('listseller.html', seller_aux=sellers)
 
 
 @app.route('/createseller')
-def create_seller():
+def create_sellers():
     return render_template('createseller.html')
   
 
@@ -87,13 +90,14 @@ def create_seller():
 def grava_seller():
     name = request.args.get('name')
     email = request.args.get('email')
-    save_seller(name,email)
+    phone = request.args.get('phone')
+    create_seller(name, phone, email)
     return render_template('succes.html')
   
 
 @app.route('/listlog')
 def list_log():
-    list_log = read_log()
+    list_log = listall_log()
     return render_template('listlog.html', list_log=list_log)
   
 

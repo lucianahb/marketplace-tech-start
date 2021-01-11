@@ -7,7 +7,7 @@
     <th style="background-color:#c9bd78">Log</th>
   </tr>
     {% for log_row in list_log %}
-        {% if 'Read historic in backend/' in log_row%}
+        {% if 'Read' in log_row%}
             <tr>
                 <td style="background-color:#72b868">{{ log_row }}</td>
             </tr>
