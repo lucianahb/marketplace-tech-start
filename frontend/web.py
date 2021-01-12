@@ -9,7 +9,7 @@ from backend.controller.log_controller import *
 from backend.controller.marketplace_controller import *
 from backend.controller.product_controller import *
 from backend.controller.seller_controller import *
-
+from backend.models.seller import *
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -91,7 +91,10 @@ def grava_seller():
     name = request.args.get('name')
     email = request.args.get('email')
     phone = request.args.get('phone')
-    create_seller(name, phone, email)
+
+    seller=Seller(name,phone,email)
+    create_seller(seller)
+
     return render_template('succes.html')
   
 
@@ -101,4 +104,4 @@ def list_log():
     return render_template('listlog.html', list_log=list_log)
   
 
-app.run(debug=True)
+app.run()

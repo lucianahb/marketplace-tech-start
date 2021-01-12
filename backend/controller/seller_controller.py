@@ -1,7 +1,9 @@
 from backend.dao.seller_dao import save_seller, read_sellers
+from backend.models.seller import *
 
-def create_seller(name_seller: str, phone: str, email: str) -> None:
-    save_seller(name_seller, phone, email)
+
+def create_seller(seller:Seller) -> None:
+    save_seller(seller)
 
 
 def listall_seller():
