@@ -10,6 +10,7 @@ from backend.controller.marketplace_controller import *
 from backend.controller.product_controller import *
 from backend.controller.seller_controller import *
 from backend.models.seller import *
+from backend.models.marketplace import *
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -28,7 +29,10 @@ def createmkp():
 def savemkp():
     name = request.args.get('name')
     description = request.args.get('description')
-    create_marketplace(name, description)
+   
+    market=Marketplace(name,description)
+
+    create_marketplace(market)
     return render_template('succes.html')
 
 

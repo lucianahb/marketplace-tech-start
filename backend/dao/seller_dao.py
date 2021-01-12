@@ -1,5 +1,4 @@
 import psycopg2
-from backend.controller.log_controller import create_log
 from backend.models.seller import *
 
 _host='pgsql08-farm15.uni5.net'
@@ -18,8 +17,6 @@ def save_seller(seller:Seller) -> None:
     cursor.close()
     conn.close()
 
-    create_log(f'Saved Seller {seller.name_seller} with phone {seller.tel} and email {seller.email}' )
-
 def read_sellers() -> list:
     list_seller = []
 
@@ -36,5 +33,5 @@ def read_sellers() -> list:
 
     cursor.close()
     conn.close()
-    create_log(f'Read sellers in seller table')
-    return list_seller
+    
+    return l_sellers
