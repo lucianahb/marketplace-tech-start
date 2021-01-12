@@ -1,17 +1,15 @@
 import json
 from backend.controller.log_controller import create_log
+from backend.models.marketplace import *
 
 _path_file = ('database/marketplace.txt')
 
-def save_mkp(marketplace: str, description: str):
+def save_mkp(marketplace:Marketplace):
     arq = open(_path_file, 'a')
-    string_mtp = f'{{"name": "{marketplace}", "description": "{description}"}}\n'
+    string_mtp = f'{marketplace.name_mkt};{marketplace.description}\n'
     arq.write(string_mtp)
     arq.close()    
-    create_log(
-        f'Saved Marketplace {marketplace} with description {description}'
-    )
-
+  
 def read_marketplace() -> list:
     """Reads the data file and returns it as a list
 
@@ -22,11 +20,14 @@ def read_marketplace() -> list:
         list: List containing the lines of the read file
     """
     list_marketplace = []
-    file_ = open(_path_file, 'r')
+    file_ = open(_path_file, 'r', encoding='utf-8')
+
     for line_in_file in file_:
-        line = line_in_file.strip()
-        json_line = json.loads(line)
-        list_marketplace.append(json_line)
+
+        linha=line_in_file.split(";")
+        obj_mkt=Marketplace(linha[0],linha[1])
+        list_marketplace.append(obj_mkt)    
+    
     file_.close()
-    create_log(f'Read marketplace in {_path_file:}')
+    
     return list_marketplace
