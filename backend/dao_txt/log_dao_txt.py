@@ -1,7 +1,9 @@
 import json
 from datetime import datetime
 
+
 _path_file = ('database/log.txt')
+
 
 def write_log(log: str):
     hour_format = datetime.now().strftime('%H:%M:%S - %d/%m/%Y')
@@ -9,6 +11,7 @@ def write_log(log: str):
     string_log = f'{hour_format} - {log}\n'
     arq.write(string_log)
     arq.close()
+
 
 def read_log() -> list:
     """Read log file
