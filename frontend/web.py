@@ -117,4 +117,4 @@ def list_log():
     return render_template('listlog.html', list_log=list_log)
   
 
-app.run()
+app.run(debug=True)

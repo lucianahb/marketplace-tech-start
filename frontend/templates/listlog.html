@@ -2,21 +2,31 @@
 
 {% block body %}
 
-<table>    
-  <tr>
-    <th style="background-color:#c9bd78">Log</th>
-  </tr>
-    {% for log_row in list_log %}
-        {% if 'Read' in log_row.msg_log%}
-            <tr>
-                <td style="background-color:#72b868">{{ log_row.hour_format + ' - ' + log_row.msg_log }}</td>
-            </tr>
-        {% else %}
+<table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Hour</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for l in list_log %}
+    {% if 'Read' in l.description%}
+      <tr> 
+            <td style="background-color:#72b868">{{ l.date }}</td>
+            <td style="background-color:#72b868">{{ l.hour }}</td>
+            <td style="background-color:#72b868">{{ l.description }}</td>
+      </tr>
+      {% else %}
         <tr>
-            <td style="background-color:#9da799">{{ log_row.hour_format + ' - ' + log_row.msg_log }}</td>
-        </tr>          
-        {% endif %}
+            <td style="background-color:#9da799">{{ l.date }}</td>
+            <td style="background-color:#9da799">{{ l.hour }}</td>
+            <td style="background-color:#9da799">{{ l.description }}</td>
+      </tr>
+    {% endif %}
     {%  endfor %}
+    </tbody>
 </table>
 
 
