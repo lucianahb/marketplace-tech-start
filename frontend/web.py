@@ -1,6 +1,7 @@
 import sys
 from flask import Flask, render_template, request
 
+
 sys.path.append('.')
 
 
@@ -9,11 +10,16 @@ from backend.controller.log_controller import *
 from backend.controller.marketplace_controller import *
 from backend.controller.product_controller import *
 from backend.controller.seller_controller import *
+
 from backend.models.seller import *
 from backend.models.marketplace import *
+from backend.models.product import Product
+from backend.models.category import Category
+
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
 
 @app.route('/')
 def index():
@@ -46,8 +52,10 @@ def saveprod():
     name = request.args.get('name')
     description = request.args.get('description')
     price = request.args.get('price')
-    create_product(name, description, price)
+    product = Product(name, description, price)
+    create_product(product)
     return render_template('succes.html')
+
 
 @app.route('/list_marketplace')
 def table_mkp():    
@@ -66,6 +74,7 @@ def list_categories():
     categories = listall_categories()
     return render_template('listcategory.html', categories=categories)
 
+
 @app.route('/createcategory')
 def create_category():
     return render_template('createcategory.html')
@@ -75,7 +84,8 @@ def create_category():
 def save_category():
     name = request.args.get('name')
     description = request.args.get('description')
-    create_categories(name, description)
+    category = Category(name, description)
+    create_categories(category)
     return render_template('succes.html')
   
 

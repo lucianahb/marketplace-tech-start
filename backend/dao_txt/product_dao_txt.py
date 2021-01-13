@@ -1,6 +1,7 @@
 import json
 from backend.controller.log_controller import create_log
 
+
 _path_file = ('database/product.txt')
 
 
@@ -16,9 +17,7 @@ def save_prod(product: str, description: str, price: str) -> None:
     string_prod = f'{{"name": "{product}", "description": "{description}", "price": "{price}"}}\n'
     file_.write(string_prod)
     file_.close()
-    create_log(
-        f'Saved Product {product} with description {description} and price {price}'
-    )
+
 
 def read_products() -> list:
     """Reads the data file and returns it as a list
@@ -36,5 +35,4 @@ def read_products() -> list:
         json_line = json.loads(line)
         list_products.append(json_line)
     file_.close()
-    create_log(f'Read products in {_path_file:}')
     return list_products

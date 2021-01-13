@@ -7,13 +7,13 @@
     <th style="background-color:#c9bd78">Log</th>
   </tr>
     {% for log_row in list_log %}
-        {% if 'Read' in log_row%}
+        {% if 'Read' in log_row.msg_log%}
             <tr>
-                <td style="background-color:#72b868">{{ log_row }}</td>
+                <td style="background-color:#72b868">{{ log_row.hour_format + ' - ' + log_row.msg_log }}</td>
             </tr>
         {% else %}
         <tr>
-            <td style="background-color:#9da799">{{ log_row }}</td>
+            <td style="background-color:#9da799">{{ log_row.hour_format + ' - ' + log_row.msg_log }}</td>
         </tr>          
         {% endif %}
     {%  endfor %}
