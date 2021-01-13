@@ -10,7 +10,6 @@ from backend.controller.log_controller import *
 from backend.controller.marketplace_controller import *
 from backend.controller.product_controller import *
 from backend.controller.seller_controller import *
-
 from backend.models.seller import *
 from backend.models.marketplace import *
 from backend.models.product import Product
@@ -65,7 +64,7 @@ def table_mkp():
 
 @app.route('/listprod')
 def list_products():
-    products = listall_product()
+    products = listall_products()
     return render_template('listprod.html', products=products)
 
 
@@ -76,7 +75,7 @@ def list_categories():
 
 
 @app.route('/createcategory')
-def create_category():
+def create_categories():
     return render_template('createcategory.html')
 
 
@@ -85,7 +84,7 @@ def save_category():
     name = request.args.get('name')
     description = request.args.get('description')
     category = Category(name, description)
-    create_categories(category)
+    create_category(category)
     return render_template('succes.html')
   
 
@@ -114,7 +113,7 @@ def grava_seller():
 
 @app.route('/listlog')
 def list_log():
-    list_log = listall_log()
+    list_log = listall_logs()
     return render_template('listlog.html', list_log=list_log)
   
 
