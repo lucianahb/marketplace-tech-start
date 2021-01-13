@@ -1,14 +1,19 @@
 {% extends 'template.html' %}
 
 {% block body %}
-<form action="/marketplace">
+<form action={{rota}}>
+
+
     <label>Name: </label>
-    <input type="text" name="name"><br>
+    <input type="text" name="name" value="{{nome}}"><br>
 
     <label>Description: </label>
-    <input type="text" name="description"><br>
+    <input type="text" name="description" value="{{descri}}"><br>
+
+    <input  type="hidden" name="identi" value={{id}}><br>
 
     <input type="submit" value="save" />
+
 </form>
 
 

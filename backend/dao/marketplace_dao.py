@@ -14,9 +14,21 @@ def read_marketplace() -> list:
 
     with psycopg2.connect(conexao()) as conn:
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM marketplace')
+        cursor.execute('SELECT id,name,description FROM marketplace')
         marketplaces = cursor.fetchall()
         for m in marketplaces:
-            obj_mkt = Marketplace(m[1],m[2])
+            obj_mkt = Marketplace(m[1],m[2],m[0])
             list_marketplace.append(obj_mkt)
     return list_marketplace
+
+def delete_marketplace(id:int):
+    with psycopg2.connect(conexao()) as conn:
+        cursor = conn.cursor()
+        cursor.execute(f'delete from marketplace where id = {id};')
+        conn.commit()
+
+def update_marketplace(id:int,nome:str,desc:str):
+    with psycopg2.connect(conexao()) as conn:
+        cursor = conn.cursor()
+        cursor.execute(f"update marketplace set name='{nome}',description='{desc}' where id = {id};")
+        conn.commit()

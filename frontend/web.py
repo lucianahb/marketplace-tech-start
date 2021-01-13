@@ -1,5 +1,5 @@
 import sys
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,redirect
 
 
 sys.path.append('.')
@@ -28,7 +28,7 @@ def index():
 
 @app.route('/createmkp')
 def createmkp():
-    return render_template('createmkp.html')
+    return render_template('createmkp.html',nome="",descri="",id="",rota="/marketplace")
 
 
 @app.route('/marketplace')
@@ -37,9 +37,37 @@ def savemkp():
     description = request.args.get('description')
    
     market=Marketplace(name,description)
-
     create_marketplace(market)
     return render_template('succes.html')
+
+@app.route('/list_marketplace')
+def table_mkp():    
+    l_aux = listall_marketplace()
+    return render_template('table_marketplace.html',lista =l_aux)
+
+
+@app.route('/delete_marketplace')
+def deletar_mkt():
+    id_del = request.args.get('id')
+    delete_item_mkt(id_del)
+    return redirect('/list_marketplace')
+
+@app.route('/update_marketplace')
+def up_mkt():
+    id_up = request.args.get('id')
+    nome_aux=request.args.get('name')
+    descri_aux= request.args.get('desc')
+    return render_template('createmkp.html',nome=nome_aux,descri=descri_aux,id=id_up,rota="/update_bd_marketplace")
+
+@app.route('/update_bd_marketplace')
+def update_bd_mkt():
+    id_up_bd = request.args.get('identi')
+    nome_aux_bd=request.args.get('name')
+    descri_aux_bd= request.args.get('description')
+
+    updata_bd_market(id_up_bd,nome_aux_bd,descri_aux_bd)
+
+    return redirect('/list_marketplace')
 
 
 @app.route('/createprod')
@@ -55,13 +83,6 @@ def saveprod():
     product = Product(name, description, price)
     create_product(product)
     return render_template('succes.html')
-
-
-@app.route('/list_marketplace')
-def table_mkp():    
-    l_aux = listall_marketplace()
-    return render_template('table_marketplace.html',lista =l_aux)
-
 
 @app.route('/listprod')
 def list_products():
@@ -116,6 +137,5 @@ def grava_seller():
 def list_log():
     list_log = listall_log()
     return render_template('listlog.html', list_log=list_log)
-  
 
 app.run()
