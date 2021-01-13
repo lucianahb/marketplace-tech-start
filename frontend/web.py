@@ -10,6 +10,9 @@ from backend.controller.log_controller import *
 from backend.controller.marketplace_controller import *
 from backend.controller.product_controller import *
 from backend.controller.seller_controller import *
+
+from backend.models.seller import *
+from backend.models.marketplace import *
 from backend.models.product import Product
 from backend.models.category import Category
 
@@ -32,7 +35,10 @@ def createmkp():
 def savemkp():
     name = request.args.get('name')
     description = request.args.get('description')
-    create_marketplace(name, description)
+   
+    market=Marketplace(name,description)
+
+    create_marketplace(market)
     return render_template('succes.html')
 
 
@@ -99,7 +105,10 @@ def grava_seller():
     name = request.args.get('name')
     email = request.args.get('email')
     phone = request.args.get('phone')
-    create_seller(name, phone, email)
+
+    seller=Seller(name,phone,email)
+    create_seller(seller)
+
     return render_template('succes.html')
   
 
@@ -109,4 +118,4 @@ def list_log():
     return render_template('listlog.html', list_log=list_log)
   
 
-app.run(debug=True)
+app.run()
