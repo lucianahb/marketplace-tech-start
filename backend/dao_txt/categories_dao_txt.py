@@ -1,7 +1,9 @@
 import json
 from backend.controller.log_controller import create_log
 
+
 _path_file = ('database/categories.txt')
+
 
 def save_categories(category: str, description: str) -> None:
     """Save a category in the categories.txt file and record this action in the log.
@@ -14,9 +16,7 @@ def save_categories(category: str, description: str) -> None:
     string_prod = f'{{"name": "{category}", "description": "{description}"}}\n'
     file_.write(string_prod)
     file_.close()
-    create_log(
-        f'Saved category {category} with description {description}'
-    )
+
 
 def read_categories() -> list:
     """Reads the data file and returns it as a list
@@ -34,5 +34,4 @@ def read_categories() -> list:
         json_line = json.loads(line)
         list_categories.append(json_line)
     file_.close()
-    create_log(f'Read categories in {_path_file:}')
     return list_categories
