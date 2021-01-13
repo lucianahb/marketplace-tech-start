@@ -1,5 +1,5 @@
 import sys
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 
 sys.path.append('.')
@@ -116,5 +116,53 @@ def list_log():
     list_log = listall_logs()
     return render_template('listlog.html', list_log=list_log)
   
+@app.route('/delete_product')
+def delete_products():
+    id = int(request.args.get('id'))
+    delete_product(id)
+    return redirect('/listprod')    
+
+
+@app.route('/update_product')
+def update_products():
+    id = request.args.get('id')
+    name = request.args.get('name')
+    description = request.args.get('description')
+    price = request.args.get('price')
+    return render_template('createprod.html', update=True, id=id, name=name, description=description, price=price)  
+
+
+@app.route('/update_product', methods=['POST'])
+def save_update_product():
+    id = request.form.get('id')
+    name = request.form.get('name')
+    description = request.form.get('description')
+    price = request.form.get('price')
+    update_product(id, name, description, price)
+    return redirect('/listprod') 
+
+@app.route('/delete_category')
+def delete_categories():
+    id = int(request.args.get('id'))
+    delete_category(id)
+    return redirect('/listcategory')    
+
+
+@app.route('/update_category')
+def update_categories():
+    id = request.args.get('id')
+    name = request.args.get('name')
+    description = request.args.get('description')
+    return render_template('createcategory.html', update=True, id=id, name=name, description=description)  
+
+
+@app.route('/update_category', methods=['POST'])
+def save_update_category():
+    id = request.form.get('id')
+    name = request.form.get('name')
+    description = request.form.get('description')
+    update_category(id, name, description)
+    return redirect('/listcategory')     
+
 
 app.run(debug=True)
