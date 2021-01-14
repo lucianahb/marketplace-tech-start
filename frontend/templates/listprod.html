@@ -4,17 +4,19 @@
     <ul>
         <table>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
+                <th>Edit/Delete</th>
             </tr>
             {% for product in products %}
                 <tr>
-                    <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.price }}</td>
+                    <td><a href="/update_product?id={{product.id}}&name={{product.name}}&description={{product.description}}&price={{product.price}}"> edit </a> 
+                    <a href="/delete_product?id={{product.id}}"> delete </a> 
+                    </td>
                 </tr>
             {% endfor %}
         </table>

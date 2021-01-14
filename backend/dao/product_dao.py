@@ -20,3 +20,19 @@ def read_products() -> list:
             product = Product(p[1], p[2], p[3], p[0])
             products.append(product)
     return products
+
+
+def delete_products(id:int) -> None:
+    with psycopg2.connect(conexao()) as conn:
+        cursor = conn.cursor()
+        cursor.execute(f"delete from product where id = {id};")
+        conn.commit()    
+        
+        
+def update_products(product: Product) -> None:    
+    with psycopg2.connect(conexao()) as conn:
+        cursor = conn.cursor()
+        cursor.execute(f"""UPDATE product SET name = '{product.name}', description = '{product.description}',
+                       price  = {product.price} WHERE id={product.id};""")
+        conn.commit()                
+    
