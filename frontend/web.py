@@ -64,7 +64,9 @@ def update_bd_mkt():
     nome_aux_bd=request.args.get('name')
     descri_aux_bd= request.args.get('description')
 
-    updata_bd_market(id_up_bd,nome_aux_bd,descri_aux_bd)
+    market=Marketplace(nome_aux_bd,descri_aux_bd,id_up_bd)
+
+    updata_bd_market(market)
 
     return redirect('/list_marketplace')
 
@@ -153,7 +155,9 @@ def update_bd_seller():
     tel_aux_bd=request.args.get('phone')
     email_aux_bd=request.args.get('email')
 
-    updata_bd_seller(id_up_bd,nome_aux_bd,tel_aux_bd,email_aux_bd)
+    seller=Seller(nome_aux_bd,tel_aux_bd,email_aux_bd,id_up_bd)
+
+    updata_bd_seller(seller)
 
     return redirect('/listseller')
   

@@ -27,8 +27,8 @@ def delete_seller(id:int):
         cursor.execute(f'delete from seller where id = {id};')
         conn.commit()
 
-def update_seller(id:int,nome:str,tel:str,email:str):
+def update_seller(s:Seller):
     with psycopg2.connect(conexao()) as conn:
         cursor = conn.cursor()
-        cursor.execute(f"update seller set name='{nome}',phone='{tel}',email='{email}' where id = {id};")
+        cursor.execute(f"update seller set name='{s.name_seller}',phone='{s.tel}',email='{s.email}' where id = {s.id};")
         conn.commit()

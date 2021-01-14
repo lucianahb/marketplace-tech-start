@@ -17,6 +17,6 @@ def delete_item_seller(id):
     delete_seller(id)
     create_log(f'ID {{id}} deleted of the seller table.')
 
-def updata_bd_seller(id,nome,tel,email):
-    update_seller(id,nome,tel,email)
-    create_log(f'ID {{id}} in marketplace table updated with name {{nome}}, phone {{descri}} and email {{email}}.')
+def updata_bd_seller(s:Seller):
+    update_seller(s)
+    create_log(f'ID {{s.id}} in marketplace table updated with name {{s.name_seller}}, phone {{s.tel}} and email {{s.email}}.')

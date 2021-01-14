@@ -27,8 +27,10 @@ def delete_marketplace(id:int):
         cursor.execute(f'delete from marketplace where id = {id};')
         conn.commit()
 
-def update_marketplace(id:int,nome:str,desc:str):
+def update_marketplace(m:Marketplace):
     with psycopg2.connect(conexao()) as conn:
         cursor = conn.cursor()
-        cursor.execute(f"update marketplace set name='{nome}',description='{desc}' where id = {id};")
+        cursor.execute(f"update marketplace set name='{m.name_mkt}',description='{m.description}' where id = {m.id};")
         conn.commit()
+
+       
