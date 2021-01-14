@@ -1,7 +1,5 @@
+from flask import Flask, render_template, request,redirect
 import sys
-from flask import Flask, render_template, request, redirect
-
-
 sys.path.append('.')
 
 
@@ -24,10 +22,10 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 def index():
     return render_template('index.html')
 
-
+#-------------------marketplace--------------------------------------
 @app.route('/createmkp')
 def createmkp():
-    return render_template('createmkp.html')
+    return render_template('createmkp.html',nome="",descri="",id="",rota="/marketplace")
 
 
 @app.route('/marketplace')
@@ -36,11 +34,40 @@ def savemkp():
     description = request.args.get('description')
    
     market=Marketplace(name,description)
-
     create_marketplace(market)
     return render_template('succes.html')
 
+@app.route('/list_marketplace')
+def table_mkp():    
+    l_aux = listall_marketplace()
+    return render_template('table_marketplace.html',lista =l_aux)
 
+@app.route('/delete_marketplace')
+def deletar_mkt():
+    id_del = request.args.get('id')
+    delete_item_mkt(id_del)
+    return redirect('/list_marketplace')
+
+@app.route('/form_marketplace')
+def up_mkt():
+    id_up = request.args.get('id')
+    nome_aux=request.args.get('name')
+    descri_aux= request.args.get('desc')
+    return render_template('createmkp.html',nome=nome_aux,descri=descri_aux,id=id_up,rota="/update_bd_marketplace")
+
+@app.route('/update_bd_marketplace')
+def update_bd_mkt():
+    id_up_bd = request.args.get('identi')
+    nome_aux_bd=request.args.get('name')
+    descri_aux_bd= request.args.get('description')
+
+    market=Marketplace(nome_aux_bd,descri_aux_bd,id_up_bd)
+
+    updata_bd_market(market)
+
+    return redirect('/list_marketplace')
+
+#--------------------------------product--------------------------------------------------
 @app.route('/createprod')
 def createprd():
     return render_template('createprod.html')
@@ -55,19 +82,12 @@ def saveprod():
     create_product(product)
     return render_template('succes.html')
 
-
-@app.route('/list_marketplace')
-def table_mkp():    
-    l_aux = listall_marketplace()
-    return render_template('table_marketplace.html',lista =l_aux)
-
-
 @app.route('/listprod')
 def list_products():
     products = listall_products()
     return render_template('listprod.html', products=products)
 
-
+#------------------------------category-------------------------------------------------
 @app.route('/listcategory')
 def list_categories():
     categories = listall_categories()
@@ -87,7 +107,7 @@ def save_category():
     create_category(category)
     return render_template('succes.html')
   
-
+#-------------------------------seller------------------------------------------
 @app.route('/listseller')
 def list_seller():
     sellers = listall_seller()
@@ -96,7 +116,7 @@ def list_seller():
 
 @app.route('/createseller')
 def create_sellers():
-    return render_template('createseller.html')
+    return render_template('createseller.html',nome="",tel="",email="",id="",rota="/seller")
   
 
 @app.route('/seller')
@@ -109,12 +129,41 @@ def grava_seller():
     create_seller(seller)
 
     return render_template('succes.html')
-  
 
+@app.route('/delete_seller')
+def deletar_seller():
+    id_del = request.args.get('id')
+    delete_item_seller(id_del)
+    return redirect('/listseller')
+
+@app.route('/form_seller')
+def up_seller():
+    id_up = request.args.get('id')
+    nome_aux=request.args.get('name')
+    tel_aux= request.args.get('tel')
+    email_aux= request.args.get('email')
+
+    return render_template('createseller.html',nome=nome_aux,tel=tel_aux,email=email_aux,id=id_up,rota="/update_bd_seller")
+
+@app.route('/update_bd_seller')
+def update_bd_seller():
+    id_up_bd = request.args.get('identi')
+    nome_aux_bd=request.args.get('name')
+    tel_aux_bd=request.args.get('phone')
+    email_aux_bd=request.args.get('email')
+
+    seller=Seller(nome_aux_bd,tel_aux_bd,email_aux_bd,id_up_bd)
+
+    updata_bd_seller(seller)
+
+    return redirect('/listseller')
+  
+#-----------------------------------------log------------------------------------------
 @app.route('/listlog')
 def list_log():
     list_log = listall_logs()
     return render_template('listlog.html', list_log=list_log)
+
   
 @app.route('/delete_product')
 def delete_products():
@@ -141,6 +190,7 @@ def save_update_product():
     update_product(id, name, description, price)
     return redirect('/listprod') 
 
+  
 @app.route('/delete_category')
 def delete_categories():
     id = int(request.args.get('id'))
