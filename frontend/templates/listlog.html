@@ -11,21 +11,36 @@
       </tr>
     </thead>
     <tbody>
-    {% for l in list_log %}
-    {% if 'Read' in l.description%}
-      <tr> 
+        {% for l in list_log %}
+        {% if 'Read' in l.description%}
+        <tr>
             <td style="background-color:#72b868">{{ l.date }}</td>
             <td style="background-color:#72b868">{{ l.hour }}</td>
             <td style="background-color:#72b868">{{ l.description }}</td>
-      </tr>
-      {% else %}
+        </tr>
+
+        {%elif 'updated' in l.description or 'Updated' in l.description %}
+        <tr>
+            <td style="background-color:#20CECF"> {{ l.date }}</td>
+            <td style="background-color:#20CECF">{{ l.hour }}</td>
+            <td style="background-color:#20CECF">{{ l.description }}</td>
+        </tr>
+
+        {%elif 'deleted' in l.description or 'Deleted' in l.description %}
+        <tr>
+            <td style="background-color:#E44C4C"> {{ l.date }}</td>
+            <td style="background-color:#E44C4C">{{ l.hour }}</td>
+            <td style="background-color:#E44C4C">{{ l.description }}</td>
+        </tr>
+
+        {% else %}
         <tr>
             <td style="background-color:#9da799">{{ l.date }}</td>
             <td style="background-color:#9da799">{{ l.hour }}</td>
             <td style="background-color:#9da799">{{ l.description }}</td>
-      </tr>
-    {% endif %}
-    {%  endfor %}
+        </tr>
+        {% endif %}
+        {%  endfor %}
     </tbody>
 </table>
 

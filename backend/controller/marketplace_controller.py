@@ -13,9 +13,9 @@ def listall_marketplace():
 
 def delete_item_mkt(id):
     delete_marketplace(id)
-    create_log(f'ID {{id}} deleted of the marketplace table.')
+    create_log(f'ID {id} deleted of the marketplace table.')
 
 def updata_bd_market(m:Marketplace):
     update_marketplace(m)
-    create_log(f'ID {{m.id}} in marketplace table updated with name {{m.name_mkt}} and description{{m.description}}.')
+    create_log(f'ID {m.id} in marketplace table updated with name {m.name_mkt} and description{m.description}.')
 

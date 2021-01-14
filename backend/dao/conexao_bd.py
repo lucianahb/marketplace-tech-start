@@ -1,9 +1,6 @@
 import psycopg2
-
-
 class Conexao:
-    
-    
+        
     def __get_conexao(self)-> str:
         host='pgsql08-farm15.uni5.net'
         user='topskills7'
