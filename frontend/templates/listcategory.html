@@ -4,15 +4,17 @@
     <ul>
         <table>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Edit/Delete</th>
             </tr>
             {% for category in categories %}
                 <tr>
-                    <td>{{ category.id }}</td>
                     <td>{{ category.name }}</td>
                     <td>{{ category.description }}</td>
+                    <td><a href="/update_category?id={{category.id}}&name={{category.name}}&description={{category.description}}"> edit </a> 
+                    <a href="/delete_category?id={{category.id}}"> delete </a> 
+                    </td>
                 </tr>
             {% endfor %}
         </table>

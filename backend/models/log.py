@@ -1,7 +1,11 @@
+from datetime import datetime, time
+
+
 class Log:
     
     
-    def __init__(self, msg_log:str, hour_format: str = '', id: int = None) -> None:
+    def __init__(self, description:str, date: datetime = None, hour: time = None, id: int = None) -> None:
         self.id = id
-        self.msg_log = msg_log
-        self.hour_format = hour_format
+        self.description = description
+        self.date = date
+        self.hour = hour

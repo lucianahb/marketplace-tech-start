@@ -1,6 +1,21 @@
 {% extends 'template.html' %}
 
 {% block body %}
+{% if update %}
+
+<form action="/update_category" method="post">
+    <input name="id" value="{{id}}" type="number" hidden><br>
+
+    <label>Name: </label>
+    <input name="name" value="{{name}}" type="text" ><br>
+
+    <label>Description: </label>
+    <input name="description" value="{{description}}" type="text"><br>
+
+    <input type="submit" value="save" />
+</form>
+
+{% else %}
 <form action="/category">
     <label>Name: </label>
     <input type="text" name="name"><br>
@@ -11,6 +26,5 @@
     <input type="submit" value="save" />
 </form>
 
-
-
+{%endif%}
 {% endblock %}
