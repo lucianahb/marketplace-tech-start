@@ -1,10 +1,9 @@
-from backend.dao.conexao_bd import conexao
-import psycopg2
+from backend.dao.conexao_bd import Conexao
 from backend.models.product import Product
 
 
 def save_product(product: Product) -> None:
-    with psycopg2.connect(conexao()) as conn:
+    with Conexao() as conn:
         cursor = conn.cursor()
         cursor.execute(f"INSERT INTO product (name, description, price) VALUES ('{product.name}', '{product.description}', '{product.price}')")
         conn.commit()
@@ -12,7 +11,7 @@ def save_product(product: Product) -> None:
 
 def read_products() -> list:
     products = []
-    with psycopg2.connect(conexao()) as conn:
+    with Conexao() as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM product')
         result = cursor.fetchall()
@@ -23,14 +22,14 @@ def read_products() -> list:
 
 
 def delete_products(id:int) -> None:
-    with psycopg2.connect(conexao()) as conn:
+    with Conexao() as conn:
         cursor = conn.cursor()
         cursor.execute(f"delete from product where id = {id};")
         conn.commit()    
         
         
 def update_products(product: Product) -> None:    
-    with psycopg2.connect(conexao()) as conn:
+    with Conexao() as conn:
         cursor = conn.cursor()
         cursor.execute(f"""UPDATE product SET name = '{product.name}', description = '{product.description}',
                        price  = {product.price} WHERE id={product.id};""")
