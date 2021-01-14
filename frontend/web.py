@@ -215,4 +215,4 @@ def save_update_category():
     return redirect('/listcategory')     
 
 
-app.run(debug=True)
+app.run()
