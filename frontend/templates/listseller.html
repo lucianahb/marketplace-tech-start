@@ -6,12 +6,18 @@
             <th>Name</th>
             <th>Phone</th>
             <th>Email</th>
+            <th>Acoes</th> 
         </tr>
         {% for sell in seller_aux %}
         <tr>
             <td>{{ sell.name_seller}}</td>
             <td>{{ sell.tel}}</td>
             <td>{{ sell.email}}</td>
+            <td>
+                <button class="btn_del" onclick="location.href='/delete_seller?id={{sell.id}}'">Deletar</button>
+                <button class="btn_up" onclick="location.href='/form_seller?id={{sell.id}}&name={{sell.name_seller}}&tel={{sell.tel}}&email={{sell.email}}'">Update</button>
+            </td>
+
         </tr>
         {% endfor %}
     </table>

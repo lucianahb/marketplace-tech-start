@@ -1,4 +1,4 @@
-from backend.dao.seller_dao import save_seller, read_sellers
+from backend.dao.seller_dao import *
 from backend.controller.log_controller import create_log
 from backend.models.seller import *
 
@@ -12,3 +12,11 @@ def listall_seller():
     list_sellers = read_sellers()
     create_log(f'Read sellers in seller table')
     return list_sellers
+
+def delete_item_seller(id):
+    delete_seller(id)
+    create_log(f'ID {{id}} deleted of the seller table.')
+
+def updata_bd_seller(id,nome,tel,email):
+    update_seller(id,nome,tel,email)
+    create_log(f'ID {{id}} in marketplace table updated with name {{nome}}, phone {{descri}} and email {{email}}.')

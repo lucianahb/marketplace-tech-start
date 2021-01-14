@@ -14,7 +14,7 @@
       <td>{{i.description}} </td>
       <td>
           <button class="btn_del" onclick="location.href='/delete_marketplace?id={{i.id}}'">Deletar</button>
-          <button class="btn_up" onclick="location.href='/update_marketplace?id={{i.id}}&name={{i.name_mkt}}&desc={{i.description}}'">Update</button>
+          <button class="btn_up" onclick="location.href='/form_marketplace?id={{i.id}}&name={{i.name_mkt}}&desc={{i.description}}'">Update</button>
       </td>
    </tr>
   {%  endfor %}

@@ -13,10 +13,22 @@ def read_sellers() -> list:
 
     with psycopg2.connect(conexao()) as conn:
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM seller')
+        cursor.execute('SELECT id,name,phone,email FROM seller')
         result = cursor.fetchall()
         l_sellers=[]
         for s in result:
-            seller=Seller(s[1],s[2],s[3])
+            seller=Seller(s[1],s[2],s[3],s[0])
             l_sellers.append(seller)
     return l_sellers
+
+def delete_seller(id:int):
+    with psycopg2.connect(conexao()) as conn:
+        cursor = conn.cursor()
+        cursor.execute(f'delete from seller where id = {id};')
+        conn.commit()
+
+def update_seller(id:int,nome:str,tel:str,email:str):
+    with psycopg2.connect(conexao()) as conn:
+        cursor = conn.cursor()
+        cursor.execute(f"update seller set name='{nome}',phone='{tel}',email='{email}' where id = {id};")
+        conn.commit()
