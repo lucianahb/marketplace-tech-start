@@ -1,9 +1,9 @@
-import psycopg2
 from backend.models.marketplace import *
-from backend.dao.conexao_bd import *
+from backend.dao.conexao_bd import Conexao
+
 
 def save_mkp(marketplace:Marketplace):
-    with psycopg2.connect(conexao()) as conn: 
+    with Conexao() as conn: 
         cursor = conn.cursor()
         cursor.execute(f"INSERT INTO marketplace (name, description) VALUES ('{marketplace.name_mkt}', '{marketplace.description}')")
         conn.commit()
@@ -12,7 +12,7 @@ def save_mkp(marketplace:Marketplace):
 def read_marketplace() -> list:
     list_marketplace = []
 
-    with psycopg2.connect(conexao()) as conn:
+    with Conexao() as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT id,name,description FROM marketplace')
         marketplaces = cursor.fetchall()
@@ -21,14 +21,16 @@ def read_marketplace() -> list:
             list_marketplace.append(obj_mkt)
     return list_marketplace
 
+
 def delete_marketplace(id:int):
-    with psycopg2.connect(conexao()) as conn:
+    with Conexao() as conn:
         cursor = conn.cursor()
         cursor.execute(f'delete from marketplace where id = {id};')
         conn.commit()
 
+
 def update_marketplace(m:Marketplace):
-    with psycopg2.connect(conexao()) as conn:
+    with Conexao() as conn:
         cursor = conn.cursor()
         cursor.execute(f"update marketplace set name='{m.name_mkt}',description='{m.description}' where id = {m.id};")
         conn.commit()

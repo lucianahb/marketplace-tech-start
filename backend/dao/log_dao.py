@@ -1,12 +1,9 @@
-from backend.dao.conexao_bd import conexao
-import psycopg2
-from datetime import datetime
 from backend.models.log import Log
-from backend.dao.conexao_bd import *
+from backend.dao.conexao_bd import Conexao
 
 
 def save_log(log: Log):
-    with psycopg2.connect(conexao()) as conn:
+    with Conexao() as conn:
         cursor = conn.cursor()
         cursor.execute(f"INSERT INTO log (description) VALUES ('{log.description}')")
         conn.commit()
@@ -14,7 +11,7 @@ def save_log(log: Log):
 
 def read_logs() -> list:
     logs = []
-    with psycopg2.connect(conexao()) as conn:
+    with Conexao() as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM log')
         result = cursor.fetchall()
