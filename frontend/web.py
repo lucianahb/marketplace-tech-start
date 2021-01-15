@@ -90,23 +90,17 @@ def saveprod():
     price = request.args.get('price')
     product = Product(name, description, price)
     ProductController().create(product)
-    log = Log(f'Saved Created product {product.name} with description {product.description} and price {product.price}')
-    LogController().create(log)
     return render_template('succes.html')
 
 @app.route('/listprod')
 def list_products():
     products = ProductController().listall()
-    log = Log(f'Read products in product table')
-    LogController().create(log)
     return render_template('listprod.html', products=products)
 
 @app.route('/delete_product')
 def delete_products():
     id = int(request.args.get('id'))
     ProductController().delete(id)
-    log = Log(f'Deleted product ID {id}')
-    LogController().create(log)
     return redirect('/listprod')    
 
 
@@ -127,8 +121,6 @@ def save_update_product():
     price = request.form.get('price')
     product = Product(name, description, price, id)
     ProductController().update(product)
-    log = Log(f'Updated product {product.name} with description {product.description} and price {product.price}') 
-    LogController().create(log)
     return redirect('/listprod') 
 
 
@@ -152,8 +144,6 @@ def save_category():
     description = request.args.get('description')
     category = Category(name, description)
     CategoryController().create(category)
-    log = Log(f'Saved Created category {category.name} with description {category.description}')
-    LogController().create(log)
     return render_template('succes.html')
 
 
@@ -161,8 +151,6 @@ def save_category():
 def delete_categories():
     id = int(request.args.get('id'))
     CategoryController().delete(id)
-    log = Log(f'Deleted category ID {id}')
-    LogController().create(log)
     return redirect('/listcategory')    
 
 
@@ -181,8 +169,6 @@ def save_update_category():
     description = request.form.get('description')
     category = Category(name, description, id)
     CategoryController().update(category)  
-    log = Log(f'Updated category {category.name} with description {category.description}')
-    LogController().create(log)
     return redirect('/listcategory')    
   
 #-------------------------------seller------------------------------------------

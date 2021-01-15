@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         {% for l in list_log %}
-        {% if 'Read' in l.description%}
+        {% if 'Listed' in l.description%}
         <tr>
             <td style="background-color:#72b868">{{ l.date }}</td>
             <td style="background-color:#72b868">{{ l.hour }}</td>
