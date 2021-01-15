@@ -1,21 +1,19 @@
 import sys
 sys.path.append('.')
 
-from backend.dao.conexao_bd import Conexao
+from .connection import Connection
 
-class Basedao:
-    def execute(self,query:str)->None:
-        with Conexao() as conn:
-            cursor=conn.cursor()
+class BaseDao:
+    def execute(self, query:str) -> None:
+        with Connection() as conn:
+            cursor = conn.cursor()
             cursor.execute(query)
             conn.commit()
-
-    def read(self,query:str)->tuple:
-        with Conexao() as conn:
-            cursor=conn.cursor()
-            cursor.execute(query)
-            result=cursor.fetchall()
-        return result
-
             
-
+    def read(self, query:str) -> tuple:
+        with Connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(query)
+            result = cursor.fetchall()
+        return result
+               

@@ -1,8 +1,6 @@
 import sys
 sys.path.append('.')
 
-from backend.controller.log_controller import create_log
-
 class Basecontroller:
     def __init__(self, dao):
         self.__dao=dao

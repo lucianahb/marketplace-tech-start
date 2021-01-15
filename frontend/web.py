@@ -2,11 +2,10 @@ from flask import Flask, render_template, request,redirect
 import sys
 sys.path.append('.')
 
-
-from backend.controller.category_controller import * 
-from backend.controller.log_controller import *
+from backend.controller.category_controller import CategoryController
+from backend.controller.log_controller import LogController
 from backend.controller.marketplace_controller import *
-from backend.controller.product_controller import *
+from backend.controller.product_controller import ProductController
 from backend.controller.seller_controller import *
 from backend.models.seller import *
 from backend.models.marketplace import *
@@ -90,18 +89,55 @@ def saveprod():
     description = request.args.get('description')
     price = request.args.get('price')
     product = Product(name, description, price)
-    create_product(product)
+    ProductController().create(product)
+    log = Log(f'Saved Created product {product.name} with description {product.description} and price {product.price}')
+    LogController().create(log)
     return render_template('succes.html')
 
 @app.route('/listprod')
 def list_products():
-    products = listall_products()
+    products = ProductController().listall()
+    log = Log(f'Read products in product table')
+    LogController().create(log)
     return render_template('listprod.html', products=products)
+
+@app.route('/delete_product')
+def delete_products():
+    id = int(request.args.get('id'))
+    ProductController().delete(id)
+    log = Log(f'Deleted product ID {id}')
+    LogController().create(log)
+    return redirect('/listprod')    
+
+
+@app.route('/update_product')
+def update_products():
+    id = request.args.get('id')
+    name = request.args.get('name')
+    description = request.args.get('description')
+    price = request.args.get('price')
+    return render_template('createprod.html', update=True, id=id, name=name, description=description, price=price)  
+
+
+@app.route('/update_product', methods=['POST'])
+def save_update_product():
+    id = request.form.get('id')
+    name = request.form.get('name')
+    description = request.form.get('description')
+    price = request.form.get('price')
+    product = Product(name, description, price, id)
+    ProductController().update(product)
+    log = Log(f'Updated product {product.name} with description {product.description} and price {product.price}') 
+    LogController().create(log)
+    return redirect('/listprod') 
+
 
 #------------------------------category-------------------------------------------------
 @app.route('/listcategory')
 def list_categories():
-    categories = listall_categories()
+    categories = CategoryController().listall()
+    log = Log(f'Read categories in category table')
+    LogController().create(log)
     return render_template('listcategory.html', categories=categories)
 
 
@@ -115,8 +151,39 @@ def save_category():
     name = request.args.get('name')
     description = request.args.get('description')
     category = Category(name, description)
-    create_category(category)
+    CategoryController().create(category)
+    log = Log(f'Saved Created category {category.name} with description {category.description}')
+    LogController().create(log)
     return render_template('succes.html')
+
+
+@app.route('/delete_category')
+def delete_categories():
+    id = int(request.args.get('id'))
+    CategoryController().delete(id)
+    log = Log(f'Deleted category ID {id}')
+    LogController().create(log)
+    return redirect('/listcategory')    
+
+
+@app.route('/update_category')
+def update_categories():
+    id = request.args.get('id')
+    name = request.args.get('name')
+    description = request.args.get('description')
+    return render_template('createcategory.html', update=True, id=id, name=name, description=description)  
+
+
+@app.route('/update_category', methods=['POST'])
+def save_update_category():
+    id = request.form.get('id')
+    name = request.form.get('name')
+    description = request.form.get('description')
+    category = Category(name, description, id)
+    CategoryController().update(category)  
+    log = Log(f'Updated category {category.name} with description {category.description}')
+    LogController().create(log)
+    return redirect('/listcategory')    
   
 #-------------------------------seller------------------------------------------
 @app.route('/listseller')
@@ -174,58 +241,8 @@ def update_bd_seller():
 #-----------------------------------------log------------------------------------------
 @app.route('/listlog')
 def list_log():
-    list_log = listall_logs()
+    list_log = LogController().listall()
     return render_template('listlog.html', list_log=list_log)
 
-  
-@app.route('/delete_product')
-def delete_products():
-    id = int(request.args.get('id'))
-    delete_product(id)
-    return redirect('/listprod')    
 
-
-@app.route('/update_product')
-def update_products():
-    id = request.args.get('id')
-    name = request.args.get('name')
-    description = request.args.get('description')
-    price = request.args.get('price')
-    return render_template('createprod.html', update=True, id=id, name=name, description=description, price=price)  
-
-
-@app.route('/update_product', methods=['POST'])
-def save_update_product():
-    id = request.form.get('id')
-    name = request.form.get('name')
-    description = request.form.get('description')
-    price = request.form.get('price')
-    update_product(id, name, description, price)
-    return redirect('/listprod') 
-
-  
-@app.route('/delete_category')
-def delete_categories():
-    id = int(request.args.get('id'))
-    delete_category(id)
-    return redirect('/listcategory')    
-
-
-@app.route('/update_category')
-def update_categories():
-    id = request.args.get('id')
-    name = request.args.get('name')
-    description = request.args.get('description')
-    return render_template('createcategory.html', update=True, id=id, name=name, description=description)  
-
-
-@app.route('/update_category', methods=['POST'])
-def save_update_category():
-    id = request.form.get('id')
-    name = request.form.get('name')
-    description = request.form.get('description')
-    update_category(id, name, description)
-    return redirect('/listcategory')     
-
-
-app.run()
+app.run(debug=True)

@@ -2,9 +2,9 @@ import sys
 sys.path.append('.')
 
 from backend.models.seller import *
-from backend.dao.base_dao import Basedao
+from backend.dao.base_dao import BaseDao
 
-class Sellerdao(Basedao):
+class Sellerdao(BaseDao):
     def save(self,seller:Seller) -> None:
         query=f"INSERT INTO seller (name, phone, email) VALUES ('{seller.name}', '{seller.tel}', '{seller.email}');"
         super().execute(query)  

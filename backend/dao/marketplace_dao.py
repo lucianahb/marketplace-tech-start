@@ -1,10 +1,9 @@
 import sys
 sys.path.append('.')
-
 from backend.models.marketplace import *
-from backend.dao.base_dao import Basedao
+from backend.dao.base_dao import BaseDao
 
-class Marketplacedao(Basedao):
+class Marketplacedao(BaseDao):
 
     def save(self,obj:Marketplace) -> None:
         query=f"INSERT INTO marketplace (name, description) VALUES ('{obj.name}', '{obj.description}');"

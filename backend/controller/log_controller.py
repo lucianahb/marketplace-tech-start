@@ -1,12 +1,8 @@
-from backend.dao.log_dao import save_log, read_logs
-from backend.models.log import Log
+from backend.controller.base_controller import BaseController
+from backend.dao.log_dao import *
 
 
-def create_log(msg: str) -> None:
-    log = Log(msg)
-    save_log(log)
-
-
-def listall_logs():
-    list_log = read_logs()
-    return list_log
+class LogController(BaseController):
+    def __init__(self) -> None:
+        self.__dao = LogDao()
+        super().__init__(self.__dao)
