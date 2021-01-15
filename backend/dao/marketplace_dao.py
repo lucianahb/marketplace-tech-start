@@ -1,5 +1,5 @@
 from backend.models.marketplace import *
-from backend.dao.conexao_bd import Conexao
+from .conexao_bd import Conexao
 
 
 def save_mkp(marketplace:Marketplace):

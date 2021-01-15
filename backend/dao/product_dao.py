@@ -1,37 +1,31 @@
-from backend.dao.conexao_bd import Conexao
 from backend.models.product import Product
+from .base_dao import BaseDao
 
 
-def save_product(product: Product) -> None:
-    with Conexao() as conn:
-        cursor = conn.cursor()
-        cursor.execute(f"INSERT INTO product (name, description, price) VALUES ('{product.name}', '{product.description}', '{product.price}')")
-        conn.commit()
+class ProductDao(BaseDao):
+    def save(self, product: Product) -> None:
+        query = f"""INSERT INTO product (name, description, price) VALUES ('{product.name}', 
+        '{product.description}', '{product.price}');"""
+        super().execute(query)
 
 
-def read_products() -> list:
-    products = []
-    with Conexao() as conn:
-        cursor = conn.cursor()
-        cursor.execute('SELECT * FROM product')
-        result = cursor.fetchall()
+    def read(self) -> list:
+        products = []
+        query = 'SELECT * FROM product;'
+        result = super().read(query)
         for p in result:
             product = Product(p[1], p[2], p[3], p[0])
             products.append(product)
-    return products
+        return products
 
 
-def delete_products(id:int) -> None:
-    with Conexao() as conn:
-        cursor = conn.cursor()
-        cursor.execute(f"delete from product where id = {id};")
-        conn.commit()    
+    def delete(self, id:int) -> None:
+        query = f"delete from product where id = {id};"
+        super().execute(query)    
+            
+            
+    def update(self, product: Product) -> None:    
+        query = f"""UPDATE product SET name = '{product.name}', description = '{product.description}',
+                        price  = {product.price} WHERE id={product.id};"""
+        super().execute(query)              
         
-        
-def update_products(product: Product) -> None:    
-    with Conexao() as conn:
-        cursor = conn.cursor()
-        cursor.execute(f"""UPDATE product SET name = '{product.name}', description = '{product.description}',
-                       price  = {product.price} WHERE id={product.id};""")
-        conn.commit()                
-    

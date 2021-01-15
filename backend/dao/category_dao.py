@@ -1,36 +1,29 @@
 from backend.models.category import Category
-from backend.dao.conexao_bd import Conexao
+from .base_dao import BaseDao
 
 
-def save_category(category: Category) -> None:
-    with Conexao() as conn:
-        cursor = conn.cursor()
-        cursor.execute(f"INSERT INTO category (name, description) VALUES ('{category.name}', '{category.description}')")
-        conn.commit()
+class CategoryDao(BaseDao):
+    def save(self, category: Category) -> None:
+        query = f"INSERT INTO category (name, description) VALUES ('{category.name}', '{category.description}');"
+        super().execute(query)
 
 
-def read_categories() -> list:
-    categories = []
-    with Conexao() as conn:
-        cursor = conn.cursor()
-        cursor.execute('SELECT * FROM category')
-        result = cursor.fetchall()
+    def read(self) -> list:
+        categories = []
+        query = 'SELECT * FROM category;'
+        result = super().read(query)
         for c in result:
             category = Category(c[1], c[2], c[0])
             categories.append(category)
-    return categories
+        return categories
 
 
-def delete_categories(id:int) -> None:
-    with Conexao() as conn:
-        cursor = conn.cursor()
-        cursor.execute(f"delete from category where id = {id};")
-        conn.commit()    
-        
-        
-def update_categories(category: Category) -> None:    
-    with Conexao() as conn:
-        cursor = conn.cursor()
-        cursor.execute(f"""UPDATE category SET name = '{category.name}', description = '{category.description}'
-                    WHERE id={category.id};""")
-        conn.commit() 
+    def delete(self, id:int) -> None:
+        query = f"delete from category where id = {id};"
+        super().execute(query)
+            
+            
+    def update(cseld, category: Category) -> None:    
+        query = f"""UPDATE category SET name = '{category.name}', description = '{category.description}'
+                        WHERE id={category.id};"""
+        super().execute(query)
