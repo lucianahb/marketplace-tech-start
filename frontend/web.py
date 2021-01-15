@@ -110,15 +110,14 @@ def save_category():
 #-------------------------------seller------------------------------------------
 @app.route('/listseller')
 def list_seller():
-    sellers = listall_seller()
+    s=Sellercontroller()
+    sellers = s.read_all_base()
     return render_template('listseller.html', seller_aux=sellers)
-
 
 @app.route('/createseller')
 def create_sellers():
     return render_template('createseller.html',nome="",tel="",email="",id="",rota="/seller")
   
-
 @app.route('/seller')
 def grava_seller():
     name = request.args.get('name')
@@ -126,14 +125,17 @@ def grava_seller():
     phone = request.args.get('phone')
 
     seller=Seller(name,phone,email)
-    create_seller(seller)
+    s=Sellercontroller()
+    s.create_base(seller)
 
     return render_template('succes.html')
 
 @app.route('/delete_seller')
 def deletar_seller():
     id_del = request.args.get('id')
-    delete_item_seller(id_del)
+    s=Sellercontroller()
+    s.delete_base(id_del)
+  
     return redirect('/listseller')
 
 @app.route('/form_seller')
@@ -153,8 +155,8 @@ def update_bd_seller():
     email_aux_bd=request.args.get('email')
 
     seller=Seller(nome_aux_bd,tel_aux_bd,email_aux_bd,id_up_bd)
-
-    updata_bd_seller(seller)
+    s=Sellercontroller()
+    s.update_base(seller)
 
     return redirect('/listseller')
   
