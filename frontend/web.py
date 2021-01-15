@@ -34,18 +34,13 @@ def savemkp():
    
     market=Marketplace(name,description)
     m=Marketplacecontroller()
-    m.create(market)
-    log = Log(f'Saved Created marketplace {market.name} with description {market.description}')
-    LogController().create(log)
-
+    m.create(market)   
     return render_template('succes.html')
 
 @app.route('/list_marketplace')
 def table_mkp():
     m=Marketplacecontroller()
-    l_aux = m.listall()
-    log = Log(f'Marketplace list displayed')
-    LogController().create(log)
+    l_aux = m.listall()   
     return render_template('table_marketplace.html',lista =l_aux)
 
 @app.route('/delete_marketplace')
@@ -53,8 +48,6 @@ def deletar_mkt():
     id_del = request.args.get('id')
     m=Marketplacecontroller()
     m.delete(id_del)
-    log = Log(f'ID {id_del} deleted of the marketplace table!!!')
-    LogController().create(log)
     return redirect('/list_marketplace')
 
 @app.route('/form_marketplace')
@@ -73,8 +66,6 @@ def update_bd_mkt():
     market=Marketplace(nome_aux_bd,descri_aux_bd,id_up_bd)
     m=Marketplacecontroller()
     m.update(market)
-    log = Log(f'ID {id_up_bd} updated with name={nome_aux_bd} and descripition={descri_aux_bd} in the marketplace table!!!')
-    LogController().create(log)
     return redirect('/list_marketplace')
 
 #--------------------------------product--------------------------------------------------
@@ -128,8 +119,7 @@ def save_update_product():
 @app.route('/listcategory')
 def list_categories():
     categories = CategoryController().listall()
-    log = Log(f'Read categories in category table')
-    LogController().create(log)
+   
     return render_template('listcategory.html', categories=categories)
 
 
@@ -231,4 +221,4 @@ def list_log():
     return render_template('listlog.html', list_log=list_log)
 
 
-app.run(debug=True)
+app.run()

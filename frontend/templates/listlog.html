@@ -33,6 +33,13 @@
             <td style="background-color:#E44C4C">{{ l.description }}</td>
         </tr>
 
+        {%elif 'Saved' in l.description or 'saved' in l.description %}
+        <tr>
+            <td style="background-color:#836FFF"> {{ l.date }}</td>
+            <td style="background-color:#836FFF">{{ l.hour }}</td>
+            <td style="background-color:#836FFF">{{ l.description }}</td>
+        </tr>
+
         {% else %}
         <tr>
             <td style="background-color:#9da799">{{ l.date }}</td>
