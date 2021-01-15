@@ -5,17 +5,17 @@ from backend.models.seller import *
 from backend.dao.base_dao import Basedao
 
 class Sellerdao(Basedao):
-    def create_dao(self,seller:Seller) -> None:
-        query=f"INSERT INTO seller (name, phone, email) VALUES ('{seller.name_seller}', '{seller.tel}', '{seller.email}');"
+    def save(self,seller:Seller) -> None:
+        query=f"INSERT INTO seller (name, phone, email) VALUES ('{seller.name}', '{seller.tel}', '{seller.email}');"
         super().execute(query)  
        
-    def read_by_id_dao(self,id:int)->Seller:
+    def read_by_id(self,id:int)->Seller:
         query="SELECT id,name,phone,email FROM seller WHERE {id};"
         result=super().read(query)[0]
         seller=Seller(result[0],result[1],result[2],result[3])
         return seller
 
-    def read_all_dao(self)->list:
+    def read(self)->list:
         list_seller = []
         query='SELECT id,name,phone,email FROM seller;'
         result=super().read(query)
@@ -24,11 +24,11 @@ class Sellerdao(Basedao):
             list_seller.append(seller)
         return list_seller
 
-    def delete_dao(self,id:int)->None:
+    def delete(self,id:int)->None:
         query=f'delete from seller where id = {id};'
         super().execute(query)
 
-    def update_dao(self,s:Seller)->None:
-        query=f"update seller set name='{s.name_seller}',phone='{s.tel}',email='{s.email}' where id = {s.id};"
+    def update(self,s:Seller)->None:
+        query=f"update seller set name='{s.name}',phone='{s.tel}',email='{s.email}' where id = {s.id};"
         super().execute(query)
  

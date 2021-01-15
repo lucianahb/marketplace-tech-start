@@ -12,7 +12,7 @@ from backend.models.seller import *
 from backend.models.marketplace import *
 from backend.models.product import Product
 from backend.models.category import Category
-
+from backend.models.log import Log
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -34,18 +34,28 @@ def savemkp():
     description = request.args.get('description')
    
     market=Marketplace(name,description)
-    create_marketplace(market)
+    m=Marketplacecontroller()
+    m.create(market)
+    log = Log(f'Saved Created marketplace {market.name} with description {market.description}')
+    LogController().create(log)
+
     return render_template('succes.html')
 
 @app.route('/list_marketplace')
-def table_mkp():    
-    l_aux = listall_marketplace()
+def table_mkp():
+    m=Marketplacecontroller()
+    l_aux = m.listall()
+    log = Log(f'Marketplace list displayed')
+    LogController().create(log)
     return render_template('table_marketplace.html',lista =l_aux)
 
 @app.route('/delete_marketplace')
 def deletar_mkt():
     id_del = request.args.get('id')
-    delete_item_mkt(id_del)
+    m=Marketplacecontroller()
+    m.delete(id_del)
+    log = Log(f'ID {id_del} deleted of the marketplace table!!!')
+    LogController().create(log)
     return redirect('/list_marketplace')
 
 @app.route('/form_marketplace')
@@ -62,9 +72,10 @@ def update_bd_mkt():
     descri_aux_bd= request.args.get('description')
 
     market=Marketplace(nome_aux_bd,descri_aux_bd,id_up_bd)
-
-    updata_bd_market(market)
-
+    m=Marketplacecontroller()
+    m.update(market)
+    log = Log(f'ID {id_up_bd} updated with name={nome_aux_bd} and descripition={descri_aux_bd} in the marketplace table!!!')
+    LogController().create(log)
     return redirect('/list_marketplace')
 
 #--------------------------------product--------------------------------------------------
@@ -111,7 +122,7 @@ def save_category():
 @app.route('/listseller')
 def list_seller():
     s=Sellercontroller()
-    sellers = s.read_all_base()
+    sellers = s.listall()
     return render_template('listseller.html', seller_aux=sellers)
 
 @app.route('/createseller')
@@ -126,7 +137,7 @@ def grava_seller():
 
     seller=Seller(name,phone,email)
     s=Sellercontroller()
-    s.create_base(seller)
+    s.create(seller)
 
     return render_template('succes.html')
 
@@ -134,7 +145,7 @@ def grava_seller():
 def deletar_seller():
     id_del = request.args.get('id')
     s=Sellercontroller()
-    s.delete_base(id_del)
+    s.delete(id_del)
   
     return redirect('/listseller')
 
@@ -156,7 +167,7 @@ def update_bd_seller():
 
     seller=Seller(nome_aux_bd,tel_aux_bd,email_aux_bd,id_up_bd)
     s=Sellercontroller()
-    s.update_base(seller)
+    s.update(seller)
 
     return redirect('/listseller')
   

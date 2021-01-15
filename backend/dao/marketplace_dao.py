@@ -1,38 +1,34 @@
+import sys
+sys.path.append('.')
+
 from backend.models.marketplace import *
-from backend.dao.conexao_bd import Conexao
+from backend.dao.base_dao import Basedao
 
+class Marketplacedao(Basedao):
 
-def save_mkp(marketplace:Marketplace):
-    with Conexao() as conn: 
-        cursor = conn.cursor()
-        cursor.execute(f"INSERT INTO marketplace (name, description) VALUES ('{marketplace.name_mkt}', '{marketplace.description}')")
-        conn.commit()
-            
-
-def read_marketplace() -> list:
-    list_marketplace = []
-
-    with Conexao() as conn:
-        cursor = conn.cursor()
-        cursor.execute('SELECT id,name,description FROM marketplace')
-        marketplaces = cursor.fetchall()
-        for m in marketplaces:
-            obj_mkt = Marketplace(m[1],m[2],m[0])
-            list_marketplace.append(obj_mkt)
-    return list_marketplace
-
-
-def delete_marketplace(id:int):
-    with Conexao() as conn:
-        cursor = conn.cursor()
-        cursor.execute(f'delete from marketplace where id = {id};')
-        conn.commit()
-
-
-def update_marketplace(m:Marketplace):
-    with Conexao() as conn:
-        cursor = conn.cursor()
-        cursor.execute(f"update marketplace set name='{m.name_mkt}',description='{m.description}' where id = {m.id};")
-        conn.commit()
-
+    def save(self,obj:Marketplace) -> None:
+        query=f"INSERT INTO marketplace (name, description) VALUES ('{obj.name}', '{obj.description}');"
+        super().execute(query)  
        
+    def read_by_id(self,id:int)->Marketplace:
+        query="SELECT id,name,description FROM marketplace WHERE {id};"
+        result=super().read(query)[0]
+        market=Marketplace(result[0],result[1],result[2])
+        return market
+    
+    def read(self)->list:
+        list_market = []
+        query='SELECT id,name,description FROM marketplace'
+        result=super().read(query)
+        for s in result:
+            market=Marketplace(s[1],s[2],s[0])
+            list_market.append(market)
+        return list_market
+
+    def delete(self,id:int)->None:
+        query=f'delete from marketplace where id = {id};'
+        super().execute(query)
+
+    def update(self,m:Marketplace)->None:
+        query=f"update marketplace set name='{m.name}',description='{m.description}' where id = {m.id};"
+        super().execute(query)
