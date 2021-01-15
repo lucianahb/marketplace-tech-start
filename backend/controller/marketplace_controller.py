@@ -1,6 +1,5 @@
 import sys
 sys.path.append('.')
-
 from backend.controller.base_controller import BaseController
 from backend.dao.marketplace_dao import Marketplacedao
 
