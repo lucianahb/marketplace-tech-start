@@ -8,4 +8,4 @@ class Sellercontroller(BaseController):
 
     def __init__(self):
         self.__dao = Sellerdao()
-        super().__init__(self.__dao)
+        super().__init__(self.__dao,'Seller')

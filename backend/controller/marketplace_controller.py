@@ -8,4 +8,4 @@ class Marketplacecontroller(BaseController):
 
     def __init__(self):
         self.__dao = Marketplacedao()
-        super().__init__(self.__dao)
+        super().__init__(self.__dao,'Marketplace')
