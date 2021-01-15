@@ -1,5 +1,7 @@
-from .connection import Connection
+import sys
+sys.path.append('.')
 
+from .connection import Connection
 
 class BaseDao:
     def execute(self, query:str) -> None:
