@@ -6,6 +6,7 @@ class Seller:
         self.__tel=tel
         self.__email=email
 
+
     @property
     def id(self):
         return self.__id
